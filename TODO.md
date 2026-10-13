@@ -20,8 +20,6 @@
 - Delegated pricing for the twelve areas without a calendar (the store allows
   ten calendars per integration): the integration would price the intervals
   itself from a local history in `/data`.
-- A "cheapest window" scene action: resolve the start and end of the next N
-  cheap hours for a following action.
 - Hourly averages when the user wants fewer sensor changes (15-minute slots
   publish 96 values a day per sensor).
 - The maintainer's list of integration ideas, by priority:

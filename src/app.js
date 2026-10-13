@@ -29,6 +29,7 @@ import { T, connectionReport } from './i18n.js';
 import { fetchDay } from './nordpool.js';
 import { AreaPrices, addDays, localClock, marketDate, slotStart, stats } from './prices.js';
 import { tomorrowEvent, transitions } from './triggers.js';
+import { PERIODS, areaFromFields, cheapestWindowOutputs, priceOutputs } from './scenes.js';
 import { buildWidget } from './widget.js';
 
 export const WIDGET_KEY = 'prices';
@@ -448,6 +449,43 @@ export class NordPoolApp {
       cheapHours: this.config.cheapHours,
       language,
     });
+  }
+
+  /** Scene action `get_price`: the price of the moment of an area. */
+  getPrice(fields = {}) {
+    const area = areaFromFields(this.gladys, fields, this.config);
+    const prices = this.prices.get(area);
+    if (!prices) {
+      return {
+        area,
+        found: false,
+        price: null,
+        level: '',
+        cheap: false,
+        currency: this.config.currency,
+      };
+    }
+    return priceOutputs({ prices, area, cheapHours: this.config.cheapHours, now: this.now() });
+  }
+
+  /** Scene action `cheapest_window`: the cheapest N hours of a period. */
+  getCheapestWindow(fields = {}) {
+    const area = areaFromFields(this.gladys, fields, this.config);
+    const hours = Math.min(12, Math.max(1, Number(fields.hours) || this.config.cheapHours));
+    const period = PERIODS.includes(fields.period) ? fields.period : PERIODS[0];
+    const prices = this.prices.get(area);
+    if (!prices) {
+      return {
+        area,
+        hours,
+        period,
+        found: false,
+        start: '',
+        end: '',
+        currency: this.config.currency,
+      };
+    }
+    return cheapestWindowOutputs({ prices, area, hours, period, now: this.now() });
   }
 
   async testConnection() {

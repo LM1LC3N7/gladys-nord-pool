@@ -1714,5 +1714,325 @@
         "currency": "NOK"
       }
     ]
-  }
+  },
+  "scene_actions": [
+    {
+      "key": "get_price",
+      "label": {
+        "en": "Nord Pool price now",
+        "fr": "Prix Nord Pool actuel"
+      },
+      "description": {
+        "en": "The price of the current 15-minute slot, its level against today's average, the next price, today's figures and the cheapest window, for a following condition or message.",
+        "fr": "Le prix du créneau de 15 minutes en cours, son niveau par rapport à la moyenne du jour, le prix suivant, les chiffres du jour et la fenêtre la moins chère, pour une condition ou un message."
+      },
+      "timeout_seconds": 10,
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Area",
+            "fr": "Zone"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "key": "price",
+          "type": "number",
+          "label": {
+            "en": "Price per kWh",
+            "fr": "Prix par kWh"
+          }
+        },
+        {
+          "key": "currency",
+          "type": "string",
+          "label": {
+            "en": "Currency",
+            "fr": "Devise"
+          }
+        },
+        {
+          "key": "level",
+          "type": "string",
+          "label": {
+            "en": "Price level",
+            "fr": "Niveau de prix"
+          }
+        },
+        {
+          "key": "cheap",
+          "type": "boolean",
+          "label": {
+            "en": "In the cheap hours",
+            "fr": "Dans les heures creuses"
+          }
+        },
+        {
+          "key": "ends_at",
+          "type": "string",
+          "label": {
+            "en": "End of the slot (ISO)",
+            "fr": "Fin du créneau (ISO)"
+          }
+        },
+        {
+          "key": "ends_time",
+          "type": "string",
+          "label": {
+            "en": "End of the slot (local time)",
+            "fr": "Fin du créneau (heure locale)"
+          }
+        },
+        {
+          "key": "next_price",
+          "type": "number",
+          "label": {
+            "en": "Next price",
+            "fr": "Prix suivant"
+          }
+        },
+        {
+          "key": "avg_price",
+          "type": "number",
+          "label": {
+            "en": "Today's average",
+            "fr": "Moyenne du jour"
+          }
+        },
+        {
+          "key": "min_price",
+          "type": "number",
+          "label": {
+            "en": "Today's minimum",
+            "fr": "Minimum du jour"
+          }
+        },
+        {
+          "key": "max_price",
+          "type": "number",
+          "label": {
+            "en": "Today's maximum",
+            "fr": "Maximum du jour"
+          }
+        },
+        {
+          "key": "tomorrow_published",
+          "type": "boolean",
+          "label": {
+            "en": "Tomorrow's prices published",
+            "fr": "Prix de demain publiés"
+          }
+        },
+        {
+          "key": "tomorrow_avg_price",
+          "type": "number",
+          "label": {
+            "en": "Tomorrow's average",
+            "fr": "Moyenne de demain"
+          }
+        },
+        {
+          "key": "window_start_time",
+          "type": "string",
+          "label": {
+            "en": "Cheapest window start (local time)",
+            "fr": "Début de la fenêtre la moins chère (heure locale)"
+          }
+        },
+        {
+          "key": "window_end_time",
+          "type": "string",
+          "label": {
+            "en": "Cheapest window end (local time)",
+            "fr": "Fin de la fenêtre la moins chère (heure locale)"
+          }
+        },
+        {
+          "key": "found",
+          "type": "boolean",
+          "label": {
+            "en": "Prices available",
+            "fr": "Prix disponibles"
+          }
+        }
+      ]
+    },
+    {
+      "key": "cheapest_window",
+      "label": {
+        "en": "Nord Pool cheapest hours",
+        "fr": "Heures Nord Pool les moins chères"
+      },
+      "description": {
+        "en": "The start and end of the cheapest consecutive hours of a period: the next 24 hours, the rest of today, or tomorrow. For a “wait until” or a timer before starting the water heater or the car.",
+        "fr": "Le début et la fin des heures consécutives les moins chères d’une période : les 24 prochaines heures, le reste de la journée, ou demain. Pour un « attendre jusqu’à » ou une minuterie avant le chauffe-eau ou la voiture."
+      },
+      "timeout_seconds": 10,
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Area",
+            "fr": "Zone"
+          }
+        },
+        {
+          "key": "hours",
+          "type": "number",
+          "required": false,
+          "label": {
+            "en": "Hours",
+            "fr": "Heures"
+          },
+          "description": {
+            "en": "Length of the window, 1 to 12 hours. Empty: the cheap hours of the configuration.",
+            "fr": "Durée de la fenêtre, 1 à 12 heures. Vide : les heures creuses de la configuration."
+          },
+          "placeholder": {
+            "en": "e.g. 3",
+            "fr": "ex. 3"
+          }
+        },
+        {
+          "key": "period",
+          "type": "select",
+          "required": false,
+          "default": "next_24h",
+          "label": {
+            "en": "Period",
+            "fr": "Période"
+          },
+          "options": [
+            {
+              "value": "next_24h",
+              "label": {
+                "en": "Next 24 hours (from now)",
+                "fr": "24 prochaines heures (à partir de maintenant)"
+              }
+            },
+            {
+              "value": "remaining_today",
+              "label": {
+                "en": "Rest of today",
+                "fr": "Reste de la journée"
+              }
+            },
+            {
+              "value": "tomorrow",
+              "label": {
+                "en": "Tomorrow (once published)",
+                "fr": "Demain (une fois publié)"
+              }
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "key": "found",
+          "type": "boolean",
+          "label": {
+            "en": "Window found",
+            "fr": "Fenêtre trouvée"
+          }
+        },
+        {
+          "key": "start",
+          "type": "string",
+          "label": {
+            "en": "Start (ISO)",
+            "fr": "Début (ISO)"
+          }
+        },
+        {
+          "key": "end",
+          "type": "string",
+          "label": {
+            "en": "End (ISO)",
+            "fr": "Fin (ISO)"
+          }
+        },
+        {
+          "key": "start_time",
+          "type": "string",
+          "label": {
+            "en": "Start (local time)",
+            "fr": "Début (heure locale)"
+          }
+        },
+        {
+          "key": "end_time",
+          "type": "string",
+          "label": {
+            "en": "End (local time)",
+            "fr": "Fin (heure locale)"
+          }
+        },
+        {
+          "key": "start_day",
+          "type": "string",
+          "label": {
+            "en": "Day of the start (today, tomorrow)",
+            "fr": "Jour du début (today, tomorrow)"
+          }
+        },
+        {
+          "key": "starts_in_minutes",
+          "type": "number",
+          "label": {
+            "en": "Minutes until the start",
+            "fr": "Minutes avant le début"
+          }
+        },
+        {
+          "key": "avg_price",
+          "type": "number",
+          "label": {
+            "en": "Average price of the window",
+            "fr": "Prix moyen de la fenêtre"
+          }
+        },
+        {
+          "key": "saving_percent",
+          "type": "number",
+          "label": {
+            "en": "Saving against the period average (%)",
+            "fr": "Économie par rapport à la moyenne de la période (%)"
+          }
+        },
+        {
+          "key": "currency",
+          "type": "string",
+          "label": {
+            "en": "Currency",
+            "fr": "Devise"
+          }
+        },
+        {
+          "key": "hours",
+          "type": "number",
+          "label": {
+            "en": "Hours",
+            "fr": "Heures"
+          }
+        },
+        {
+          "key": "period",
+          "type": "string",
+          "label": {
+            "en": "Period",
+            "fr": "Période"
+          }
+        }
+      ]
+    }
+  ]
 }

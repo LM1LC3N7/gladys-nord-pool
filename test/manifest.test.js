@@ -10,6 +10,7 @@ import { ACTION_TEST, WIDGET_KEY } from '../src/app.js';
 import { DEFAULTS } from '../src/config.js';
 import { AREAS, CURRENCIES } from '../src/constants.js';
 import { SCENE_TRIGGERS } from '../src/triggers.js';
+import { PERIODS, SCENE_ACTIONS } from '../src/scenes.js';
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const manifest = JSON.parse(read('gladys-assistant-integration.json'));
@@ -85,6 +86,22 @@ test('the triggers, the widget and the action are wired', () => {
     [ACTION_TEST],
   );
   assert.ok(index.includes(`onAction(ACTION_TEST`));
+  assert.deepEqual(
+    manifest.scene_actions.map((a) => a.key).sort(),
+    Object.values(SCENE_ACTIONS).sort(),
+  );
+  for (const action of manifest.scene_actions) {
+    assert.equal(action.fields[0].key, 'device');
+    assert.equal(action.fields[0].source, 'devices');
+    assert.ok(index.includes(`onSceneAction(SCENE_ACTIONS.${action.key.toUpperCase()}`));
+  }
+  const period = manifest.scene_actions
+    .find((a) => a.key === 'cheapest_window')
+    .fields.find((f) => f.key === 'period');
+  assert.deepEqual(
+    period.options.map((o) => o.value),
+    PERIODS,
+  );
 });
 
 test('the energy calendars and templates follow the areas table', () => {

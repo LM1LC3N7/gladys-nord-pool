@@ -10,6 +10,7 @@ import { join } from 'node:path';
 import { createFakeGladys } from '@gladysassistant/integration-sdk/testing';
 import { ACTION_TEST, NordPoolApp, WIDGET_KEY } from '../src/app.js';
 import { SCENE_TRIGGERS } from '../src/triggers.js';
+import { SCENE_ACTIONS } from '../src/scenes.js';
 import {
   FIXTURE_DATE,
   FIXTURE_NOW,
@@ -73,6 +74,8 @@ function setup({ config = { areas: ['FR'] }, now = FIXTURE_NOW, routes, calendar
   // What index.js wires.
   gladys.onWidgetGet(WIDGET_KEY, (request) => app.getWidget(request));
   gladys.onAction(ACTION_TEST, () => app.testConnection());
+  gladys.onSceneAction(SCENE_ACTIONS.GET_PRICE, (fields) => app.getPrice(fields));
+  gladys.onSceneAction(SCENE_ACTIONS.CHEAPEST_WINDOW, (fields) => app.getCheapestWindow(fields));
   return { app, gladys, timers, clock, dataDir };
 }
 
@@ -295,6 +298,46 @@ test('the widget and the action read the configured area', async () => {
     report.data.message.en,
     /^Nord Pool OK\. FR: 0\.2009 EUR\/kWh now \(expensive\), 0\.1694 on average today; tomorrow's prices are not published yet\.$/,
   );
+  await app.stop();
+});
+
+test('the scene actions give the price now and the cheapest window', async () => {
+  const { app, gladys } = setup();
+  await app.start({ areas: ['FR'], cheap_hours: 3 });
+  const price = await gladys.fake.sceneAction('get_price', { device: FR });
+  assert.equal(price.success, true);
+  const p = price.data.outputs;
+  assert.equal(p.found, true);
+  assert.equal(p.price, 0.2009);
+  assert.equal(p.currency, 'EUR');
+  assert.equal(p.level, 'expensive');
+  assert.equal(p.cheap, false);
+  assert.equal(p.ends_time, '10:15');
+  assert.equal(p.avg_price, 0.1694);
+  assert.equal(p.tomorrow_published, false);
+  assert.match(p.window_start_time, /^\d{2}:\d{2}$/);
+
+  const window = await gladys.fake.sceneAction('cheapest_window', {
+    device: FR,
+    hours: '2',
+    period: 'remaining_today',
+  });
+  const w = window.data.outputs;
+  assert.equal(w.found, true);
+  assert.equal(w.hours, 2);
+  assert.equal(Date.parse(w.end) - Date.parse(w.start), 2 * 3_600_000);
+  assert.ok(Date.parse(w.start) >= FIXTURE_NOW - 15 * 60_000);
+  assert.equal(w.start_day, 'today');
+  assert.ok(w.avg_price <= p.avg_price);
+  assert.ok(w.saving_percent >= 0);
+  assert.match(w.start_time, /^\d{2}:\d{2}$/);
+  // Tomorrow is not published: no window; the default period and hours apply.
+  const none = await gladys.fake.sceneAction('cheapest_window', { device: FR, period: 'tomorrow' });
+  assert.equal(none.data.outputs.found, false);
+  const next = await gladys.fake.sceneAction('cheapest_window', { device: FR });
+  assert.equal(next.data.outputs.hours, 3);
+  assert.equal(next.data.outputs.period, 'next_24h');
+  assert.equal(next.data.outputs.found, true);
   await app.stop();
 });
 

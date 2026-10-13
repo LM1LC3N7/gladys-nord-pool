@@ -40,6 +40,7 @@ src/prices.js       the price model (pure): market dates, slots, stats,
                     levels, cheap hours, AreaPrices
 src/devices.js      area -> Gladys device + states (pure)
 src/triggers.js     transitions between two instants -> scene events (pure)
+src/scenes.js       scene actions: price now, cheapest window of a period (pure)
 src/widget.js       the "prices" widget content (pure)
 src/calendars.js    slots -> energy calendar entries (pure)
 src/config.js       config_schema normalized

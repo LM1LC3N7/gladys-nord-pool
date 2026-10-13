@@ -49,6 +49,19 @@ published, and moves the sensors every 15 minutes.
 
 Every event carries the price, the currency and the end of the slot.
 
+Two scene actions, for a condition or a message that follows:
+
+- **Nord Pool price now**: the price of the current 15-minute slot, its
+  level, whether it is in the cheap hours, the next price, today's average,
+  minimum and maximum, tomorrow's average once published, and the cheapest
+  window of the day (`window_start_time`, `window_end_time`).
+- **Nord Pool cheapest hours**: the start and end of the cheapest N
+  consecutive hours of a period (the next 24 hours, the rest of today, or
+  tomorrow), with the minutes until the start and the saving against the
+  period average. `{{start_time}}` and `{{end_time}}` are local times,
+  `{{start}}` and `{{end}}` ISO dates for a "wait until"; `{{found}}` is
+  false when the period has no prices yet (tomorrow before 13:00 CET).
+
 ## Energy contracts (Gladys 5.2 or newer)
 
 For FR, BE, NL, GER, AT, FI, DK1, DK2, SE3 and NO1, the integration feeds a

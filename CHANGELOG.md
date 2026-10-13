@@ -10,6 +10,13 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+### Added
+
+- Scene actions "Nord Pool price now" (price, level, cheap hours, next
+  price, today's and tomorrow's figures, cheapest window) and "Nord Pool
+  cheapest hours" (the start and end of the cheapest N consecutive hours of
+  the next 24 hours, the rest of today or tomorrow).
+
 ### Changed
 
 - Shared tooling of the LM1LC3N7 Gladys integrations: CI on Node 22 and 24 with `npm audit`, Release workflow driven by this changelog, GitHub Releases from its sections, grouped Dependabot updates.

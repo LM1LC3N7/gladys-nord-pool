@@ -53,6 +53,21 @@ minutes.
 
 Chaque événement porte le prix, la devise et la fin du créneau.
 
+Deux actions de scène, pour une condition ou un message qui suit :
+
+- **Prix Nord Pool actuel** : le prix du créneau de 15 minutes en cours, son
+  niveau, s'il est dans les heures creuses, le prix suivant, la moyenne, le
+  minimum et le maximum du jour, la moyenne de demain une fois publiée, et
+  la fenêtre la moins chère de la journée (`window_start_time`,
+  `window_end_time`).
+- **Heures Nord Pool les moins chères** : le début et la fin des N heures
+  consécutives les moins chères d'une période (les 24 prochaines heures, le
+  reste de la journée, ou demain), avec les minutes avant le début et
+  l'économie par rapport à la moyenne de la période. `{{start_time}}` et
+  `{{end_time}}` sont des heures locales, `{{start}}` et `{{end}}` des dates
+  ISO pour un « attendre jusqu'à » ; `{{found}}` vaut faux quand la période
+  n'a pas encore de prix (demain avant 13 h CET).
+
 ## Contrats énergétiques (Gladys 5.2 ou plus récent)
 
 Pour FR, BE, NL, GER, AT, FI, DK1, DK2, SE3 et NO1, l'intégration alimente un
