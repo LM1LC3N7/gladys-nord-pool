@@ -1,0 +1,98 @@
+# Nord Pool
+
+**Unofficial connector, not affiliated with Nord Pool.** It brings the
+**day-ahead electricity prices** of the Nord Pool market into Gladys: 22
+bidding zones from France to Finland, read from the public data portal behind
+[data.nordpoolgroup.com](https://data.nordpoolgroup.com/auction/day-ahead/prices),
+without any account. Nord Pool is a trademark of Nord Pool AS.
+
+## What you get
+
+| Surface                 | Content                                                                                                                                                                                                |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| One device per area     | current price, next price (15 minutes later), today's average, minimum and maximum, per kWh, in the currency you pick                                                                                  |
+| Scene triggers          | "cheap period started / ended" (the N cheapest hours of the day), "price level changed" (very cheap, cheap, normal, expensive, very expensive, against today's average), "tomorrow's prices published" |
+| Dashboard widget        | now, next, today's and tomorrow's average, the curve of the day with the current time, the price level and the cheapest window                                                                         |
+| Energy contracts (5.2+) | the spot prices of ten areas as tariff calendars, and a "Nord Pool spot" contract template per area for the energy monitoring: spot price + your supplier margin + a monthly subscription + VAT        |
+
+The prices are the **wholesale market prices** (the day-ahead auction, cleared
+at noon CET for the next day, in 15-minute slots since October 2025). Your
+supplier adds its margin, the grid fees and the taxes: the contract templates
+let you fill them in.
+
+## Setup
+
+1. Install the integration from the store and open its **Configuration**
+   screen.
+2. Pick your **delivery areas** (the bidding zone of your meter: FR for
+   France, BE, NL, GER for Germany and Luxembourg, SE1 to SE4 for Sweden,
+   NO1 to NO5 for Norway, DK1 and DK2 for Denmark, FI, AT, PL, EE, LT, LV),
+   the **currency** of the sensors and the number of **cheap hours per day**
+   (4 by default). Save.
+3. Open **Discovery** and create the device of each area.
+4. Put the **Electricity prices** widget on a dashboard, pick the area.
+
+Nothing else: no key, no account. The integration reads Nord Pool at start
+and every hour, asks for tomorrow from 12:45 CET every 10 minutes until it is
+published, and moves the sensors every 15 minutes.
+
+## Scenes
+
+- **Cheap period started / ended**: fires when the current slot enters or
+  leaves the N cheapest hours of the day (N = "cheap hours per day"). Start
+  the water heater, the charger, the washing machine.
+- **Price level changed**: fires at every change of level, with the new and
+  the previous level; filter on a level to react only to "very expensive".
+- **Tomorrow's prices published**: fires once a day, around 13:00 CET, with
+  tomorrow's average, minimum, maximum and the cheapest window (start and
+  end), ready for a notification.
+
+Every event carries the price, the currency and the end of the slot.
+
+## Energy contracts (Gladys 5.2 or newer)
+
+For FR, BE, NL, GER, AT, FI, DK1, DK2, SE3 and NO1, the integration feeds a
+tariff calendar (`spot-fr`, `spot-de-lu`, `spot-se3`…) with the 15-minute spot
+prices, in the currency of the area, and backfills the last six weeks the
+first time. In **Energy monitoring → Contracts**, create a contract from the
+**Nord Pool spot** template of your area and fill in:
+
+- the **supplier margin** per kWh (add the per-kWh grid fees and levies here
+  if you want them counted);
+- the **monthly subscription**;
+- the **VAT** rate (pre-filled for the country);
+- the **fallback price**, used for a slot that has no spot price yet.
+
+The costs of your meter then follow the spot price slot by slot, and the core
+"current price" widget and scene trigger work with it. The other twelve areas
+have no calendar yet (the store allows ten per integration): tell us on the
+forum if you need yours.
+
+## Options
+
+- **Delivery areas**: one device each; the sensors share the chosen currency.
+- **Currency of the sensors**: EUR, SEK, NOK, DKK or PLN, converted by Nord
+  Pool at its daily rate. The calendars always use the currency of the area.
+- **Cheap hours per day**: how many of the cheapest hours count as "cheap" for
+  the triggers and the widget window (1 to 12).
+
+The **Read the prices now** button reads today and tomorrow and shows the
+current price of every area.
+
+## Troubleshooting
+
+- **"Nord Pool publishes no price for …"**: the area code is not priced by
+  Nord Pool (check the list above), or the portal is down for the day.
+- **"Nord Pool is unreachable"**: the integration keeps the last prices read
+  and retries every 5 minutes.
+- **No tomorrow's prices in the evening**: Nord Pool publishes them between
+  12:45 and 14:00 CET on normal days; on an auction incident they can come
+  later, the integration keeps asking every 10 minutes.
+- **The contract costs stop at a date**: the calendar is fed six weeks back
+  at most; a contract dated earlier is priced with the fallback price before.
+
+## Privacy
+
+The integration only talks to the Nord Pool data portal, with a request that
+carries nothing but the date, the areas and the currency. Nothing of your
+home leaves Gladys.

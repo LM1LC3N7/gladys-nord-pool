@@ -1,0 +1,1718 @@
+{
+  "manifest_version": 1,
+  "type": "device",
+  "name": "Nord Pool",
+  "description": {
+    "en": "Unofficial connector: Nord Pool day-ahead electricity prices, cheap hours and spot contracts.",
+    "fr": "Connecteur non officiel : prix spot Nord Pool du lendemain, heures creuses et contrats spot."
+  },
+  "version": "0.1.0",
+  "docker_image": "ghcr.io/lm1lc3n7/gladys-nord-pool:0.1.0",
+  "gladys_version": ">=5.2.0",
+  "cover_image": "https://raw.githubusercontent.com/LM1LC3N7/gladys-nord-pool/main/cover.png",
+  "categories": ["energy"],
+  "transports": ["cloud"],
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "label": {
+        "en": "Nord Pool day-ahead prices",
+        "fr": "Prix Nord Pool du lendemain"
+      },
+      "description": {
+        "en": "Unofficial connector, not affiliated with Nord Pool. It reads the public day-ahead auction prices of the Nord Pool data portal, no account needed: one device per area with the current, next, average, minimum and maximum price per kWh, scene triggers on the cheap hours and the price level, a dashboard widget, and spot energy contracts for the Gladys energy monitoring (ten areas). Prices are the wholesale market prices: your supplier adds its margin, the grid fees and the taxes, which the contract templates let you fill in.",
+        "fr": "Connecteur non officiel, sans lien avec Nord Pool. Il lit les prix publics de l'enchère du lendemain du portail de données Nord Pool, sans compte : un appareil par zone avec le prix actuel, suivant, moyen, minimum et maximum par kWh, des déclencheurs de scène sur les heures creuses et le niveau de prix, un widget de tableau de bord, et des contrats spot pour le suivi énergétique de Gladys (dix zones). Les prix sont ceux du marché de gros : votre fournisseur ajoute sa marge, les frais de réseau et les taxes, que les modèles de contrat vous laissent renseigner."
+      },
+      "links": [
+        {
+          "url": "https://data.nordpoolgroup.com/auction/day-ahead/prices",
+          "label": {
+            "en": "Nord Pool day-ahead prices",
+            "fr": "Prix Nord Pool du lendemain"
+          }
+        },
+        {
+          "url": "https://github.com/LM1LC3N7/gladys-nord-pool/blob/main/docs/en.md",
+          "label": {
+            "en": "Guide (English)",
+            "fr": "Guide (anglais)"
+          }
+        },
+        {
+          "url": "https://github.com/LM1LC3N7/gladys-nord-pool/blob/main/docs/fr.md",
+          "label": {
+            "en": "Guide (French)",
+            "fr": "Guide (français)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "areas",
+      "type": "multi_select",
+      "required": true,
+      "default": ["FR"],
+      "label": {
+        "en": "Delivery areas",
+        "fr": "Zones de livraison"
+      },
+      "description": {
+        "en": "The bidding zones to follow: one device each. Pick the zone of your meter.",
+        "fr": "Les zones de marché à suivre : un appareil chacune. Choisissez la zone de votre compteur."
+      },
+      "options": [
+        {
+          "value": "FR",
+          "label": {
+            "en": "FR – France",
+            "fr": "FR – France"
+          }
+        },
+        {
+          "value": "BE",
+          "label": {
+            "en": "BE – Belgium",
+            "fr": "BE – Belgique"
+          }
+        },
+        {
+          "value": "NL",
+          "label": {
+            "en": "NL – Netherlands",
+            "fr": "NL – Pays-Bas"
+          }
+        },
+        {
+          "value": "GER",
+          "label": {
+            "en": "GER – Germany / Luxembourg",
+            "fr": "GER – Allemagne / Luxembourg"
+          }
+        },
+        {
+          "value": "AT",
+          "label": {
+            "en": "AT – Austria",
+            "fr": "AT – Autriche"
+          }
+        },
+        {
+          "value": "FI",
+          "label": {
+            "en": "FI – Finland",
+            "fr": "FI – Finlande"
+          }
+        },
+        {
+          "value": "DK1",
+          "label": {
+            "en": "DK1 – Denmark West",
+            "fr": "DK1 – Danemark Ouest"
+          }
+        },
+        {
+          "value": "DK2",
+          "label": {
+            "en": "DK2 – Denmark East",
+            "fr": "DK2 – Danemark Est"
+          }
+        },
+        {
+          "value": "SE3",
+          "label": {
+            "en": "SE3 – Sweden, Stockholm",
+            "fr": "SE3 – Suède, Stockholm"
+          }
+        },
+        {
+          "value": "NO1",
+          "label": {
+            "en": "NO1 – Norway, Oslo",
+            "fr": "NO1 – Norvège, Oslo"
+          }
+        },
+        {
+          "value": "SE1",
+          "label": {
+            "en": "SE1 – Sweden, Luleå",
+            "fr": "SE1 – Suède, Luleå"
+          }
+        },
+        {
+          "value": "SE2",
+          "label": {
+            "en": "SE2 – Sweden, Sundsvall",
+            "fr": "SE2 – Suède, Sundsvall"
+          }
+        },
+        {
+          "value": "SE4",
+          "label": {
+            "en": "SE4 – Sweden, Malmö",
+            "fr": "SE4 – Suède, Malmö"
+          }
+        },
+        {
+          "value": "NO2",
+          "label": {
+            "en": "NO2 – Norway, Kristiansand",
+            "fr": "NO2 – Norvège, Kristiansand"
+          }
+        },
+        {
+          "value": "NO3",
+          "label": {
+            "en": "NO3 – Norway, Trondheim",
+            "fr": "NO3 – Norvège, Trondheim"
+          }
+        },
+        {
+          "value": "NO4",
+          "label": {
+            "en": "NO4 – Norway, Tromsø",
+            "fr": "NO4 – Norvège, Tromsø"
+          }
+        },
+        {
+          "value": "NO5",
+          "label": {
+            "en": "NO5 – Norway, Bergen",
+            "fr": "NO5 – Norvège, Bergen"
+          }
+        },
+        {
+          "value": "EE",
+          "label": {
+            "en": "EE – Estonia",
+            "fr": "EE – Estonie"
+          }
+        },
+        {
+          "value": "LT",
+          "label": {
+            "en": "LT – Lithuania",
+            "fr": "LT – Lituanie"
+          }
+        },
+        {
+          "value": "LV",
+          "label": {
+            "en": "LV – Latvia",
+            "fr": "LV – Lettonie"
+          }
+        },
+        {
+          "value": "PL",
+          "label": {
+            "en": "PL – Poland",
+            "fr": "PL – Pologne"
+          }
+        }
+      ]
+    },
+    {
+      "key": "currency",
+      "type": "select",
+      "required": false,
+      "default": "EUR",
+      "label": {
+        "en": "Currency of the sensors",
+        "fr": "Devise des capteurs"
+      },
+      "description": {
+        "en": "Nord Pool converts the prices at its daily exchange rate. The energy contracts always use the currency of the area.",
+        "fr": "Nord Pool convertit les prix à son taux de change du jour. Les contrats énergétiques utilisent toujours la devise de la zone."
+      },
+      "options": [
+        {
+          "value": "EUR",
+          "label": {
+            "en": "EUR",
+            "fr": "EUR"
+          }
+        },
+        {
+          "value": "SEK",
+          "label": {
+            "en": "SEK",
+            "fr": "SEK"
+          }
+        },
+        {
+          "value": "NOK",
+          "label": {
+            "en": "NOK",
+            "fr": "NOK"
+          }
+        },
+        {
+          "value": "DKK",
+          "label": {
+            "en": "DKK",
+            "fr": "DKK"
+          }
+        },
+        {
+          "value": "PLN",
+          "label": {
+            "en": "PLN",
+            "fr": "PLN"
+          }
+        }
+      ]
+    },
+    {
+      "key": "cheap_hours",
+      "type": "number",
+      "required": false,
+      "default": 4,
+      "min": 1,
+      "max": 12,
+      "label": {
+        "en": "Cheap hours per day",
+        "fr": "Heures creuses par jour"
+      },
+      "description": {
+        "en": "How many of the cheapest hours of the day count as \"cheap\" for the scene triggers and the widget window.",
+        "fr": "Combien des heures les moins chères de la journée comptent comme « creuses » pour les déclencheurs de scène et la fenêtre du widget."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "key": "test_connection",
+      "timeout_seconds": 30,
+      "label": {
+        "en": "Read the prices now",
+        "fr": "Lire les prix maintenant"
+      },
+      "description": {
+        "en": "Reads today's and tomorrow's prices and shows the current price of every area.",
+        "fr": "Lit les prix d'aujourd'hui et de demain et affiche le prix actuel de chaque zone."
+      }
+    }
+  ],
+  "widgets": [
+    {
+      "key": "prices",
+      "label": {
+        "en": "Electricity prices",
+        "fr": "Prix de l'électricité"
+      },
+      "description": {
+        "en": "Now, next, today's average, the day curve, price level and cheapest hours.",
+        "fr": "Maintenant, ensuite, moyenne du jour, courbe, niveau de prix et heures creuses."
+      },
+      "icon": "trending-down",
+      "settings": [
+        {
+          "key": "area",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Area",
+            "fr": "Zone"
+          }
+        }
+      ]
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "cheap_period_started",
+      "label": {
+        "en": "Nord Pool cheap period started",
+        "fr": "Début des heures creuses Nord Pool"
+      },
+      "description": {
+        "en": "The current slot is one of the cheapest hours of the day (see \"Cheap hours per day\").",
+        "fr": "Le créneau actuel fait partie des heures les moins chères de la journée (voir « Heures creuses par jour »)."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Area",
+            "fr": "Zone"
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "price",
+          "type": "number",
+          "label": {
+            "en": "Price per kWh",
+            "fr": "Prix par kWh"
+          }
+        },
+        {
+          "key": "currency",
+          "type": "string",
+          "label": {
+            "en": "Currency",
+            "fr": "Devise"
+          }
+        },
+        {
+          "key": "level",
+          "type": "string",
+          "label": {
+            "en": "Price level",
+            "fr": "Niveau de prix"
+          }
+        },
+        {
+          "key": "ends_at",
+          "type": "string",
+          "label": {
+            "en": "End of the slot",
+            "fr": "Fin du créneau"
+          }
+        }
+      ]
+    },
+    {
+      "key": "cheap_period_ended",
+      "label": {
+        "en": "Nord Pool cheap period ended",
+        "fr": "Fin des heures creuses Nord Pool"
+      },
+      "description": {
+        "en": "The cheap hours are over for now.",
+        "fr": "Les heures creuses sont terminées pour le moment."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Area",
+            "fr": "Zone"
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "price",
+          "type": "number",
+          "label": {
+            "en": "Price per kWh",
+            "fr": "Prix par kWh"
+          }
+        },
+        {
+          "key": "currency",
+          "type": "string",
+          "label": {
+            "en": "Currency",
+            "fr": "Devise"
+          }
+        },
+        {
+          "key": "level",
+          "type": "string",
+          "label": {
+            "en": "Price level",
+            "fr": "Niveau de prix"
+          }
+        },
+        {
+          "key": "ends_at",
+          "type": "string",
+          "label": {
+            "en": "End of the slot",
+            "fr": "Fin du créneau"
+          }
+        }
+      ]
+    },
+    {
+      "key": "price_level_changed",
+      "label": {
+        "en": "Nord Pool price level changed",
+        "fr": "Changement de niveau de prix Nord Pool"
+      },
+      "description": {
+        "en": "The price level against today's average changed (very cheap, cheap, normal, expensive, very expensive).",
+        "fr": "Le niveau de prix par rapport à la moyenne du jour a changé (très bon marché, bon marché, normal, cher, très cher)."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Area",
+            "fr": "Zone"
+          }
+        },
+        {
+          "key": "level",
+          "type": "select",
+          "required": false,
+          "label": {
+            "en": "New level",
+            "fr": "Nouveau niveau"
+          },
+          "options": [
+            {
+              "value": "very_cheap",
+              "label": {
+                "en": "Very cheap",
+                "fr": "Très bon marché"
+              }
+            },
+            {
+              "value": "cheap",
+              "label": {
+                "en": "Cheap",
+                "fr": "Bon marché"
+              }
+            },
+            {
+              "value": "normal",
+              "label": {
+                "en": "Normal",
+                "fr": "Normal"
+              }
+            },
+            {
+              "value": "expensive",
+              "label": {
+                "en": "Expensive",
+                "fr": "Cher"
+              }
+            },
+            {
+              "value": "very_expensive",
+              "label": {
+                "en": "Very expensive",
+                "fr": "Très cher"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "price",
+          "type": "number",
+          "label": {
+            "en": "Price per kWh",
+            "fr": "Prix par kWh"
+          }
+        },
+        {
+          "key": "currency",
+          "type": "string",
+          "label": {
+            "en": "Currency",
+            "fr": "Devise"
+          }
+        },
+        {
+          "key": "level",
+          "type": "string",
+          "label": {
+            "en": "Price level",
+            "fr": "Niveau de prix"
+          }
+        },
+        {
+          "key": "ends_at",
+          "type": "string",
+          "label": {
+            "en": "End of the slot",
+            "fr": "Fin du créneau"
+          }
+        },
+        {
+          "key": "previous_level",
+          "type": "string",
+          "label": {
+            "en": "Previous level",
+            "fr": "Niveau précédent"
+          }
+        }
+      ]
+    },
+    {
+      "key": "tomorrow_prices_published",
+      "label": {
+        "en": "Nord Pool tomorrow's prices published",
+        "fr": "Prix Nord Pool de demain publiés"
+      },
+      "description": {
+        "en": "Nord Pool published tomorrow's prices (around 13:00 CET).",
+        "fr": "Nord Pool a publié les prix de demain (vers 13 h CET)."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Area",
+            "fr": "Zone"
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "average",
+          "type": "number",
+          "label": {
+            "en": "Average price per kWh",
+            "fr": "Prix moyen par kWh"
+          }
+        },
+        {
+          "key": "min",
+          "type": "number",
+          "label": {
+            "en": "Minimum price",
+            "fr": "Prix minimum"
+          }
+        },
+        {
+          "key": "max",
+          "type": "number",
+          "label": {
+            "en": "Maximum price",
+            "fr": "Prix maximum"
+          }
+        },
+        {
+          "key": "currency",
+          "type": "string",
+          "label": {
+            "en": "Currency",
+            "fr": "Devise"
+          }
+        },
+        {
+          "key": "cheapest_start",
+          "type": "string",
+          "label": {
+            "en": "Start of the cheapest hours",
+            "fr": "Début des heures les moins chères"
+          }
+        },
+        {
+          "key": "cheapest_end",
+          "type": "string",
+          "label": {
+            "en": "End of the cheapest hours",
+            "fr": "Fin des heures les moins chères"
+          }
+        }
+      ]
+    }
+  ],
+  "energy_contracts": {
+    "templates": [
+      {
+        "key": "nord-pool-spot-fr",
+        "name": {
+          "en": "Nord Pool spot FR (France)",
+          "fr": "Spot Nord Pool FR (France)"
+        },
+        "description": {
+          "en": "Day-ahead spot price of the FR area plus your supplier margin, a monthly subscription and VAT. Grid fees and levies are not included: add them to the margin if they are per kWh.",
+          "fr": "Prix spot du lendemain de la zone FR plus la marge de votre fournisseur, un abonnement mensuel et la TVA. Les frais de réseau et taxes au kWh ne sont pas inclus : ajoutez-les à la marge."
+        },
+        "country": "FR",
+        "currency": "EUR",
+        "timezone": "Europe/Paris",
+        "pricing_mode": "rules",
+        "version": "2026-10-13",
+        "calendars": ["spot-fr"],
+        "inputs": [
+          {
+            "key": "margin",
+            "type": "number",
+            "unit": "EUR/kWh",
+            "default": 0,
+            "label": {
+              "en": "Supplier margin per kWh",
+              "fr": "Marge du fournisseur par kWh"
+            },
+            "description": {
+              "en": "Added to every spot price (grid fees and per-kWh levies too, if you want them counted).",
+              "fr": "Ajoutée à chaque prix spot (frais de réseau et taxes au kWh aussi, si vous voulez les compter)."
+            }
+          },
+          {
+            "key": "subscription",
+            "type": "number",
+            "unit": "EUR/month",
+            "default": 0,
+            "label": {
+              "en": "Monthly subscription",
+              "fr": "Abonnement mensuel"
+            }
+          },
+          {
+            "key": "vat",
+            "type": "number",
+            "unit": "%",
+            "default": 20,
+            "label": {
+              "en": "VAT",
+              "fr": "TVA"
+            }
+          },
+          {
+            "key": "fallback_price",
+            "type": "number",
+            "unit": "EUR/kWh",
+            "default": 0.15,
+            "label": {
+              "en": "Price when no spot price is known",
+              "fr": "Prix quand le prix spot est inconnu"
+            },
+            "description": {
+              "en": "Used for a slot the integration has not published yet.",
+              "fr": "Utilisé pour un créneau que l'intégration n'a pas encore publié."
+            }
+          }
+        ],
+        "tariff": {
+          "tariff_version": 1,
+          "calendars": ["spot-fr"],
+          "components": [
+            {
+              "key": "energy",
+              "kind": "consumption",
+              "label": "Spot",
+              "rules": [
+                {
+                  "label": "Spot",
+                  "price_from_calendar": "spot-fr",
+                  "offset": "{{input:margin}}"
+                }
+              ],
+              "fallback": {
+                "label": "Fallback",
+                "price": "{{input:fallback_price}}"
+              }
+            },
+            {
+              "key": "subscription",
+              "kind": "fixed",
+              "label": "Subscription",
+              "amount": "{{input:subscription}}",
+              "per": "month"
+            },
+            {
+              "key": "vat",
+              "kind": "tax",
+              "label": "VAT",
+              "rate": "{{input:vat}}",
+              "applies_to": ["energy", "subscription"]
+            }
+          ]
+        }
+      },
+      {
+        "key": "nord-pool-spot-be",
+        "name": {
+          "en": "Nord Pool spot BE (Belgium)",
+          "fr": "Spot Nord Pool BE (Belgique)"
+        },
+        "description": {
+          "en": "Day-ahead spot price of the BE area plus your supplier margin, a monthly subscription and VAT. Grid fees and levies are not included: add them to the margin if they are per kWh.",
+          "fr": "Prix spot du lendemain de la zone BE plus la marge de votre fournisseur, un abonnement mensuel et la TVA. Les frais de réseau et taxes au kWh ne sont pas inclus : ajoutez-les à la marge."
+        },
+        "country": "BE",
+        "currency": "EUR",
+        "timezone": "Europe/Brussels",
+        "pricing_mode": "rules",
+        "version": "2026-10-13",
+        "calendars": ["spot-be"],
+        "inputs": [
+          {
+            "key": "margin",
+            "type": "number",
+            "unit": "EUR/kWh",
+            "default": 0,
+            "label": {
+              "en": "Supplier margin per kWh",
+              "fr": "Marge du fournisseur par kWh"
+            },
+            "description": {
+              "en": "Added to every spot price (grid fees and per-kWh levies too, if you want them counted).",
+              "fr": "Ajoutée à chaque prix spot (frais de réseau et taxes au kWh aussi, si vous voulez les compter)."
+            }
+          },
+          {
+            "key": "subscription",
+            "type": "number",
+            "unit": "EUR/month",
+            "default": 0,
+            "label": {
+              "en": "Monthly subscription",
+              "fr": "Abonnement mensuel"
+            }
+          },
+          {
+            "key": "vat",
+            "type": "number",
+            "unit": "%",
+            "default": 6,
+            "label": {
+              "en": "VAT",
+              "fr": "TVA"
+            }
+          },
+          {
+            "key": "fallback_price",
+            "type": "number",
+            "unit": "EUR/kWh",
+            "default": 0.15,
+            "label": {
+              "en": "Price when no spot price is known",
+              "fr": "Prix quand le prix spot est inconnu"
+            },
+            "description": {
+              "en": "Used for a slot the integration has not published yet.",
+              "fr": "Utilisé pour un créneau que l'intégration n'a pas encore publié."
+            }
+          }
+        ],
+        "tariff": {
+          "tariff_version": 1,
+          "calendars": ["spot-be"],
+          "components": [
+            {
+              "key": "energy",
+              "kind": "consumption",
+              "label": "Spot",
+              "rules": [
+                {
+                  "label": "Spot",
+                  "price_from_calendar": "spot-be",
+                  "offset": "{{input:margin}}"
+                }
+              ],
+              "fallback": {
+                "label": "Fallback",
+                "price": "{{input:fallback_price}}"
+              }
+            },
+            {
+              "key": "subscription",
+              "kind": "fixed",
+              "label": "Subscription",
+              "amount": "{{input:subscription}}",
+              "per": "month"
+            },
+            {
+              "key": "vat",
+              "kind": "tax",
+              "label": "VAT",
+              "rate": "{{input:vat}}",
+              "applies_to": ["energy", "subscription"]
+            }
+          ]
+        }
+      },
+      {
+        "key": "nord-pool-spot-nl",
+        "name": {
+          "en": "Nord Pool spot NL (Netherlands)",
+          "fr": "Spot Nord Pool NL (Pays-Bas)"
+        },
+        "description": {
+          "en": "Day-ahead spot price of the NL area plus your supplier margin, a monthly subscription and VAT. Grid fees and levies are not included: add them to the margin if they are per kWh.",
+          "fr": "Prix spot du lendemain de la zone NL plus la marge de votre fournisseur, un abonnement mensuel et la TVA. Les frais de réseau et taxes au kWh ne sont pas inclus : ajoutez-les à la marge."
+        },
+        "country": "NL",
+        "currency": "EUR",
+        "timezone": "Europe/Amsterdam",
+        "pricing_mode": "rules",
+        "version": "2026-10-13",
+        "calendars": ["spot-nl"],
+        "inputs": [
+          {
+            "key": "margin",
+            "type": "number",
+            "unit": "EUR/kWh",
+            "default": 0,
+            "label": {
+              "en": "Supplier margin per kWh",
+              "fr": "Marge du fournisseur par kWh"
+            },
+            "description": {
+              "en": "Added to every spot price (grid fees and per-kWh levies too, if you want them counted).",
+              "fr": "Ajoutée à chaque prix spot (frais de réseau et taxes au kWh aussi, si vous voulez les compter)."
+            }
+          },
+          {
+            "key": "subscription",
+            "type": "number",
+            "unit": "EUR/month",
+            "default": 0,
+            "label": {
+              "en": "Monthly subscription",
+              "fr": "Abonnement mensuel"
+            }
+          },
+          {
+            "key": "vat",
+            "type": "number",
+            "unit": "%",
+            "default": 21,
+            "label": {
+              "en": "VAT",
+              "fr": "TVA"
+            }
+          },
+          {
+            "key": "fallback_price",
+            "type": "number",
+            "unit": "EUR/kWh",
+            "default": 0.15,
+            "label": {
+              "en": "Price when no spot price is known",
+              "fr": "Prix quand le prix spot est inconnu"
+            },
+            "description": {
+              "en": "Used for a slot the integration has not published yet.",
+              "fr": "Utilisé pour un créneau que l'intégration n'a pas encore publié."
+            }
+          }
+        ],
+        "tariff": {
+          "tariff_version": 1,
+          "calendars": ["spot-nl"],
+          "components": [
+            {
+              "key": "energy",
+              "kind": "consumption",
+              "label": "Spot",
+              "rules": [
+                {
+                  "label": "Spot",
+                  "price_from_calendar": "spot-nl",
+                  "offset": "{{input:margin}}"
+                }
+              ],
+              "fallback": {
+                "label": "Fallback",
+                "price": "{{input:fallback_price}}"
+              }
+            },
+            {
+              "key": "subscription",
+              "kind": "fixed",
+              "label": "Subscription",
+              "amount": "{{input:subscription}}",
+              "per": "month"
+            },
+            {
+              "key": "vat",
+              "kind": "tax",
+              "label": "VAT",
+              "rate": "{{input:vat}}",
+              "applies_to": ["energy", "subscription"]
+            }
+          ]
+        }
+      },
+      {
+        "key": "nord-pool-spot-ger",
+        "name": {
+          "en": "Nord Pool spot GER (Germany / Luxembourg)",
+          "fr": "Spot Nord Pool GER (Allemagne / Luxembourg)"
+        },
+        "description": {
+          "en": "Day-ahead spot price of the GER area plus your supplier margin, a monthly subscription and VAT. Grid fees and levies are not included: add them to the margin if they are per kWh.",
+          "fr": "Prix spot du lendemain de la zone GER plus la marge de votre fournisseur, un abonnement mensuel et la TVA. Les frais de réseau et taxes au kWh ne sont pas inclus : ajoutez-les à la marge."
+        },
+        "country": "DE",
+        "currency": "EUR",
+        "timezone": "Europe/Berlin",
+        "pricing_mode": "rules",
+        "version": "2026-10-13",
+        "calendars": ["spot-de-lu"],
+        "inputs": [
+          {
+            "key": "margin",
+            "type": "number",
+            "unit": "EUR/kWh",
+            "default": 0,
+            "label": {
+              "en": "Supplier margin per kWh",
+              "fr": "Marge du fournisseur par kWh"
+            },
+            "description": {
+              "en": "Added to every spot price (grid fees and per-kWh levies too, if you want them counted).",
+              "fr": "Ajoutée à chaque prix spot (frais de réseau et taxes au kWh aussi, si vous voulez les compter)."
+            }
+          },
+          {
+            "key": "subscription",
+            "type": "number",
+            "unit": "EUR/month",
+            "default": 0,
+            "label": {
+              "en": "Monthly subscription",
+              "fr": "Abonnement mensuel"
+            }
+          },
+          {
+            "key": "vat",
+            "type": "number",
+            "unit": "%",
+            "default": 19,
+            "label": {
+              "en": "VAT",
+              "fr": "TVA"
+            }
+          },
+          {
+            "key": "fallback_price",
+            "type": "number",
+            "unit": "EUR/kWh",
+            "default": 0.15,
+            "label": {
+              "en": "Price when no spot price is known",
+              "fr": "Prix quand le prix spot est inconnu"
+            },
+            "description": {
+              "en": "Used for a slot the integration has not published yet.",
+              "fr": "Utilisé pour un créneau que l'intégration n'a pas encore publié."
+            }
+          }
+        ],
+        "tariff": {
+          "tariff_version": 1,
+          "calendars": ["spot-de-lu"],
+          "components": [
+            {
+              "key": "energy",
+              "kind": "consumption",
+              "label": "Spot",
+              "rules": [
+                {
+                  "label": "Spot",
+                  "price_from_calendar": "spot-de-lu",
+                  "offset": "{{input:margin}}"
+                }
+              ],
+              "fallback": {
+                "label": "Fallback",
+                "price": "{{input:fallback_price}}"
+              }
+            },
+            {
+              "key": "subscription",
+              "kind": "fixed",
+              "label": "Subscription",
+              "amount": "{{input:subscription}}",
+              "per": "month"
+            },
+            {
+              "key": "vat",
+              "kind": "tax",
+              "label": "VAT",
+              "rate": "{{input:vat}}",
+              "applies_to": ["energy", "subscription"]
+            }
+          ]
+        }
+      },
+      {
+        "key": "nord-pool-spot-at",
+        "name": {
+          "en": "Nord Pool spot AT (Austria)",
+          "fr": "Spot Nord Pool AT (Autriche)"
+        },
+        "description": {
+          "en": "Day-ahead spot price of the AT area plus your supplier margin, a monthly subscription and VAT. Grid fees and levies are not included: add them to the margin if they are per kWh.",
+          "fr": "Prix spot du lendemain de la zone AT plus la marge de votre fournisseur, un abonnement mensuel et la TVA. Les frais de réseau et taxes au kWh ne sont pas inclus : ajoutez-les à la marge."
+        },
+        "country": "AT",
+        "currency": "EUR",
+        "timezone": "Europe/Vienna",
+        "pricing_mode": "rules",
+        "version": "2026-10-13",
+        "calendars": ["spot-at"],
+        "inputs": [
+          {
+            "key": "margin",
+            "type": "number",
+            "unit": "EUR/kWh",
+            "default": 0,
+            "label": {
+              "en": "Supplier margin per kWh",
+              "fr": "Marge du fournisseur par kWh"
+            },
+            "description": {
+              "en": "Added to every spot price (grid fees and per-kWh levies too, if you want them counted).",
+              "fr": "Ajoutée à chaque prix spot (frais de réseau et taxes au kWh aussi, si vous voulez les compter)."
+            }
+          },
+          {
+            "key": "subscription",
+            "type": "number",
+            "unit": "EUR/month",
+            "default": 0,
+            "label": {
+              "en": "Monthly subscription",
+              "fr": "Abonnement mensuel"
+            }
+          },
+          {
+            "key": "vat",
+            "type": "number",
+            "unit": "%",
+            "default": 20,
+            "label": {
+              "en": "VAT",
+              "fr": "TVA"
+            }
+          },
+          {
+            "key": "fallback_price",
+            "type": "number",
+            "unit": "EUR/kWh",
+            "default": 0.15,
+            "label": {
+              "en": "Price when no spot price is known",
+              "fr": "Prix quand le prix spot est inconnu"
+            },
+            "description": {
+              "en": "Used for a slot the integration has not published yet.",
+              "fr": "Utilisé pour un créneau que l'intégration n'a pas encore publié."
+            }
+          }
+        ],
+        "tariff": {
+          "tariff_version": 1,
+          "calendars": ["spot-at"],
+          "components": [
+            {
+              "key": "energy",
+              "kind": "consumption",
+              "label": "Spot",
+              "rules": [
+                {
+                  "label": "Spot",
+                  "price_from_calendar": "spot-at",
+                  "offset": "{{input:margin}}"
+                }
+              ],
+              "fallback": {
+                "label": "Fallback",
+                "price": "{{input:fallback_price}}"
+              }
+            },
+            {
+              "key": "subscription",
+              "kind": "fixed",
+              "label": "Subscription",
+              "amount": "{{input:subscription}}",
+              "per": "month"
+            },
+            {
+              "key": "vat",
+              "kind": "tax",
+              "label": "VAT",
+              "rate": "{{input:vat}}",
+              "applies_to": ["energy", "subscription"]
+            }
+          ]
+        }
+      },
+      {
+        "key": "nord-pool-spot-fi",
+        "name": {
+          "en": "Nord Pool spot FI (Finland)",
+          "fr": "Spot Nord Pool FI (Finlande)"
+        },
+        "description": {
+          "en": "Day-ahead spot price of the FI area plus your supplier margin, a monthly subscription and VAT. Grid fees and levies are not included: add them to the margin if they are per kWh.",
+          "fr": "Prix spot du lendemain de la zone FI plus la marge de votre fournisseur, un abonnement mensuel et la TVA. Les frais de réseau et taxes au kWh ne sont pas inclus : ajoutez-les à la marge."
+        },
+        "country": "FI",
+        "currency": "EUR",
+        "timezone": "Europe/Helsinki",
+        "pricing_mode": "rules",
+        "version": "2026-10-13",
+        "calendars": ["spot-fi"],
+        "inputs": [
+          {
+            "key": "margin",
+            "type": "number",
+            "unit": "EUR/kWh",
+            "default": 0,
+            "label": {
+              "en": "Supplier margin per kWh",
+              "fr": "Marge du fournisseur par kWh"
+            },
+            "description": {
+              "en": "Added to every spot price (grid fees and per-kWh levies too, if you want them counted).",
+              "fr": "Ajoutée à chaque prix spot (frais de réseau et taxes au kWh aussi, si vous voulez les compter)."
+            }
+          },
+          {
+            "key": "subscription",
+            "type": "number",
+            "unit": "EUR/month",
+            "default": 0,
+            "label": {
+              "en": "Monthly subscription",
+              "fr": "Abonnement mensuel"
+            }
+          },
+          {
+            "key": "vat",
+            "type": "number",
+            "unit": "%",
+            "default": 25.5,
+            "label": {
+              "en": "VAT",
+              "fr": "TVA"
+            }
+          },
+          {
+            "key": "fallback_price",
+            "type": "number",
+            "unit": "EUR/kWh",
+            "default": 0.15,
+            "label": {
+              "en": "Price when no spot price is known",
+              "fr": "Prix quand le prix spot est inconnu"
+            },
+            "description": {
+              "en": "Used for a slot the integration has not published yet.",
+              "fr": "Utilisé pour un créneau que l'intégration n'a pas encore publié."
+            }
+          }
+        ],
+        "tariff": {
+          "tariff_version": 1,
+          "calendars": ["spot-fi"],
+          "components": [
+            {
+              "key": "energy",
+              "kind": "consumption",
+              "label": "Spot",
+              "rules": [
+                {
+                  "label": "Spot",
+                  "price_from_calendar": "spot-fi",
+                  "offset": "{{input:margin}}"
+                }
+              ],
+              "fallback": {
+                "label": "Fallback",
+                "price": "{{input:fallback_price}}"
+              }
+            },
+            {
+              "key": "subscription",
+              "kind": "fixed",
+              "label": "Subscription",
+              "amount": "{{input:subscription}}",
+              "per": "month"
+            },
+            {
+              "key": "vat",
+              "kind": "tax",
+              "label": "VAT",
+              "rate": "{{input:vat}}",
+              "applies_to": ["energy", "subscription"]
+            }
+          ]
+        }
+      },
+      {
+        "key": "nord-pool-spot-dk1",
+        "name": {
+          "en": "Nord Pool spot DK1 (Denmark West)",
+          "fr": "Spot Nord Pool DK1 (Danemark Ouest)"
+        },
+        "description": {
+          "en": "Day-ahead spot price of the DK1 area plus your supplier margin, a monthly subscription and VAT. Grid fees and levies are not included: add them to the margin if they are per kWh.",
+          "fr": "Prix spot du lendemain de la zone DK1 plus la marge de votre fournisseur, un abonnement mensuel et la TVA. Les frais de réseau et taxes au kWh ne sont pas inclus : ajoutez-les à la marge."
+        },
+        "country": "DK",
+        "currency": "DKK",
+        "timezone": "Europe/Copenhagen",
+        "pricing_mode": "rules",
+        "version": "2026-10-13",
+        "calendars": ["spot-dk1"],
+        "inputs": [
+          {
+            "key": "margin",
+            "type": "number",
+            "unit": "DKK/kWh",
+            "default": 0,
+            "label": {
+              "en": "Supplier margin per kWh",
+              "fr": "Marge du fournisseur par kWh"
+            },
+            "description": {
+              "en": "Added to every spot price (grid fees and per-kWh levies too, if you want them counted).",
+              "fr": "Ajoutée à chaque prix spot (frais de réseau et taxes au kWh aussi, si vous voulez les compter)."
+            }
+          },
+          {
+            "key": "subscription",
+            "type": "number",
+            "unit": "DKK/month",
+            "default": 0,
+            "label": {
+              "en": "Monthly subscription",
+              "fr": "Abonnement mensuel"
+            }
+          },
+          {
+            "key": "vat",
+            "type": "number",
+            "unit": "%",
+            "default": 25,
+            "label": {
+              "en": "VAT",
+              "fr": "TVA"
+            }
+          },
+          {
+            "key": "fallback_price",
+            "type": "number",
+            "unit": "DKK/kWh",
+            "default": 1.0,
+            "label": {
+              "en": "Price when no spot price is known",
+              "fr": "Prix quand le prix spot est inconnu"
+            },
+            "description": {
+              "en": "Used for a slot the integration has not published yet.",
+              "fr": "Utilisé pour un créneau que l'intégration n'a pas encore publié."
+            }
+          }
+        ],
+        "tariff": {
+          "tariff_version": 1,
+          "calendars": ["spot-dk1"],
+          "components": [
+            {
+              "key": "energy",
+              "kind": "consumption",
+              "label": "Spot",
+              "rules": [
+                {
+                  "label": "Spot",
+                  "price_from_calendar": "spot-dk1",
+                  "offset": "{{input:margin}}"
+                }
+              ],
+              "fallback": {
+                "label": "Fallback",
+                "price": "{{input:fallback_price}}"
+              }
+            },
+            {
+              "key": "subscription",
+              "kind": "fixed",
+              "label": "Subscription",
+              "amount": "{{input:subscription}}",
+              "per": "month"
+            },
+            {
+              "key": "vat",
+              "kind": "tax",
+              "label": "VAT",
+              "rate": "{{input:vat}}",
+              "applies_to": ["energy", "subscription"]
+            }
+          ]
+        }
+      },
+      {
+        "key": "nord-pool-spot-dk2",
+        "name": {
+          "en": "Nord Pool spot DK2 (Denmark East)",
+          "fr": "Spot Nord Pool DK2 (Danemark Est)"
+        },
+        "description": {
+          "en": "Day-ahead spot price of the DK2 area plus your supplier margin, a monthly subscription and VAT. Grid fees and levies are not included: add them to the margin if they are per kWh.",
+          "fr": "Prix spot du lendemain de la zone DK2 plus la marge de votre fournisseur, un abonnement mensuel et la TVA. Les frais de réseau et taxes au kWh ne sont pas inclus : ajoutez-les à la marge."
+        },
+        "country": "DK",
+        "currency": "DKK",
+        "timezone": "Europe/Copenhagen",
+        "pricing_mode": "rules",
+        "version": "2026-10-13",
+        "calendars": ["spot-dk2"],
+        "inputs": [
+          {
+            "key": "margin",
+            "type": "number",
+            "unit": "DKK/kWh",
+            "default": 0,
+            "label": {
+              "en": "Supplier margin per kWh",
+              "fr": "Marge du fournisseur par kWh"
+            },
+            "description": {
+              "en": "Added to every spot price (grid fees and per-kWh levies too, if you want them counted).",
+              "fr": "Ajoutée à chaque prix spot (frais de réseau et taxes au kWh aussi, si vous voulez les compter)."
+            }
+          },
+          {
+            "key": "subscription",
+            "type": "number",
+            "unit": "DKK/month",
+            "default": 0,
+            "label": {
+              "en": "Monthly subscription",
+              "fr": "Abonnement mensuel"
+            }
+          },
+          {
+            "key": "vat",
+            "type": "number",
+            "unit": "%",
+            "default": 25,
+            "label": {
+              "en": "VAT",
+              "fr": "TVA"
+            }
+          },
+          {
+            "key": "fallback_price",
+            "type": "number",
+            "unit": "DKK/kWh",
+            "default": 1.0,
+            "label": {
+              "en": "Price when no spot price is known",
+              "fr": "Prix quand le prix spot est inconnu"
+            },
+            "description": {
+              "en": "Used for a slot the integration has not published yet.",
+              "fr": "Utilisé pour un créneau que l'intégration n'a pas encore publié."
+            }
+          }
+        ],
+        "tariff": {
+          "tariff_version": 1,
+          "calendars": ["spot-dk2"],
+          "components": [
+            {
+              "key": "energy",
+              "kind": "consumption",
+              "label": "Spot",
+              "rules": [
+                {
+                  "label": "Spot",
+                  "price_from_calendar": "spot-dk2",
+                  "offset": "{{input:margin}}"
+                }
+              ],
+              "fallback": {
+                "label": "Fallback",
+                "price": "{{input:fallback_price}}"
+              }
+            },
+            {
+              "key": "subscription",
+              "kind": "fixed",
+              "label": "Subscription",
+              "amount": "{{input:subscription}}",
+              "per": "month"
+            },
+            {
+              "key": "vat",
+              "kind": "tax",
+              "label": "VAT",
+              "rate": "{{input:vat}}",
+              "applies_to": ["energy", "subscription"]
+            }
+          ]
+        }
+      },
+      {
+        "key": "nord-pool-spot-se3",
+        "name": {
+          "en": "Nord Pool spot SE3 (Sweden, Stockholm)",
+          "fr": "Spot Nord Pool SE3 (Suède, Stockholm)"
+        },
+        "description": {
+          "en": "Day-ahead spot price of the SE3 area plus your supplier margin, a monthly subscription and VAT. Grid fees and levies are not included: add them to the margin if they are per kWh.",
+          "fr": "Prix spot du lendemain de la zone SE3 plus la marge de votre fournisseur, un abonnement mensuel et la TVA. Les frais de réseau et taxes au kWh ne sont pas inclus : ajoutez-les à la marge."
+        },
+        "country": "SE",
+        "currency": "SEK",
+        "timezone": "Europe/Stockholm",
+        "pricing_mode": "rules",
+        "version": "2026-10-13",
+        "calendars": ["spot-se3"],
+        "inputs": [
+          {
+            "key": "margin",
+            "type": "number",
+            "unit": "SEK/kWh",
+            "default": 0,
+            "label": {
+              "en": "Supplier margin per kWh",
+              "fr": "Marge du fournisseur par kWh"
+            },
+            "description": {
+              "en": "Added to every spot price (grid fees and per-kWh levies too, if you want them counted).",
+              "fr": "Ajoutée à chaque prix spot (frais de réseau et taxes au kWh aussi, si vous voulez les compter)."
+            }
+          },
+          {
+            "key": "subscription",
+            "type": "number",
+            "unit": "SEK/month",
+            "default": 0,
+            "label": {
+              "en": "Monthly subscription",
+              "fr": "Abonnement mensuel"
+            }
+          },
+          {
+            "key": "vat",
+            "type": "number",
+            "unit": "%",
+            "default": 25,
+            "label": {
+              "en": "VAT",
+              "fr": "TVA"
+            }
+          },
+          {
+            "key": "fallback_price",
+            "type": "number",
+            "unit": "SEK/kWh",
+            "default": 1.0,
+            "label": {
+              "en": "Price when no spot price is known",
+              "fr": "Prix quand le prix spot est inconnu"
+            },
+            "description": {
+              "en": "Used for a slot the integration has not published yet.",
+              "fr": "Utilisé pour un créneau que l'intégration n'a pas encore publié."
+            }
+          }
+        ],
+        "tariff": {
+          "tariff_version": 1,
+          "calendars": ["spot-se3"],
+          "components": [
+            {
+              "key": "energy",
+              "kind": "consumption",
+              "label": "Spot",
+              "rules": [
+                {
+                  "label": "Spot",
+                  "price_from_calendar": "spot-se3",
+                  "offset": "{{input:margin}}"
+                }
+              ],
+              "fallback": {
+                "label": "Fallback",
+                "price": "{{input:fallback_price}}"
+              }
+            },
+            {
+              "key": "subscription",
+              "kind": "fixed",
+              "label": "Subscription",
+              "amount": "{{input:subscription}}",
+              "per": "month"
+            },
+            {
+              "key": "vat",
+              "kind": "tax",
+              "label": "VAT",
+              "rate": "{{input:vat}}",
+              "applies_to": ["energy", "subscription"]
+            }
+          ]
+        }
+      },
+      {
+        "key": "nord-pool-spot-no1",
+        "name": {
+          "en": "Nord Pool spot NO1 (Norway, Oslo)",
+          "fr": "Spot Nord Pool NO1 (Norvège, Oslo)"
+        },
+        "description": {
+          "en": "Day-ahead spot price of the NO1 area plus your supplier margin, a monthly subscription and VAT. Grid fees and levies are not included: add them to the margin if they are per kWh.",
+          "fr": "Prix spot du lendemain de la zone NO1 plus la marge de votre fournisseur, un abonnement mensuel et la TVA. Les frais de réseau et taxes au kWh ne sont pas inclus : ajoutez-les à la marge."
+        },
+        "country": "NO",
+        "currency": "NOK",
+        "timezone": "Europe/Oslo",
+        "pricing_mode": "rules",
+        "version": "2026-10-13",
+        "calendars": ["spot-no1"],
+        "inputs": [
+          {
+            "key": "margin",
+            "type": "number",
+            "unit": "NOK/kWh",
+            "default": 0,
+            "label": {
+              "en": "Supplier margin per kWh",
+              "fr": "Marge du fournisseur par kWh"
+            },
+            "description": {
+              "en": "Added to every spot price (grid fees and per-kWh levies too, if you want them counted).",
+              "fr": "Ajoutée à chaque prix spot (frais de réseau et taxes au kWh aussi, si vous voulez les compter)."
+            }
+          },
+          {
+            "key": "subscription",
+            "type": "number",
+            "unit": "NOK/month",
+            "default": 0,
+            "label": {
+              "en": "Monthly subscription",
+              "fr": "Abonnement mensuel"
+            }
+          },
+          {
+            "key": "vat",
+            "type": "number",
+            "unit": "%",
+            "default": 25,
+            "label": {
+              "en": "VAT",
+              "fr": "TVA"
+            }
+          },
+          {
+            "key": "fallback_price",
+            "type": "number",
+            "unit": "NOK/kWh",
+            "default": 1.0,
+            "label": {
+              "en": "Price when no spot price is known",
+              "fr": "Prix quand le prix spot est inconnu"
+            },
+            "description": {
+              "en": "Used for a slot the integration has not published yet.",
+              "fr": "Utilisé pour un créneau que l'intégration n'a pas encore publié."
+            }
+          }
+        ],
+        "tariff": {
+          "tariff_version": 1,
+          "calendars": ["spot-no1"],
+          "components": [
+            {
+              "key": "energy",
+              "kind": "consumption",
+              "label": "Spot",
+              "rules": [
+                {
+                  "label": "Spot",
+                  "price_from_calendar": "spot-no1",
+                  "offset": "{{input:margin}}"
+                }
+              ],
+              "fallback": {
+                "label": "Fallback",
+                "price": "{{input:fallback_price}}"
+              }
+            },
+            {
+              "key": "subscription",
+              "kind": "fixed",
+              "label": "Subscription",
+              "amount": "{{input:subscription}}",
+              "per": "month"
+            },
+            {
+              "key": "vat",
+              "kind": "tax",
+              "label": "VAT",
+              "rate": "{{input:vat}}",
+              "applies_to": ["energy", "subscription"]
+            }
+          ]
+        }
+      }
+    ],
+    "calendars": [
+      {
+        "key": "spot-fr",
+        "granularity": "fifteen_minutes",
+        "timezone": "Europe/Paris",
+        "currency": "EUR"
+      },
+      {
+        "key": "spot-be",
+        "granularity": "fifteen_minutes",
+        "timezone": "Europe/Brussels",
+        "currency": "EUR"
+      },
+      {
+        "key": "spot-nl",
+        "granularity": "fifteen_minutes",
+        "timezone": "Europe/Amsterdam",
+        "currency": "EUR"
+      },
+      {
+        "key": "spot-de-lu",
+        "granularity": "fifteen_minutes",
+        "timezone": "Europe/Berlin",
+        "currency": "EUR"
+      },
+      {
+        "key": "spot-at",
+        "granularity": "fifteen_minutes",
+        "timezone": "Europe/Vienna",
+        "currency": "EUR"
+      },
+      {
+        "key": "spot-fi",
+        "granularity": "fifteen_minutes",
+        "timezone": "Europe/Helsinki",
+        "currency": "EUR"
+      },
+      {
+        "key": "spot-dk1",
+        "granularity": "fifteen_minutes",
+        "timezone": "Europe/Copenhagen",
+        "currency": "DKK"
+      },
+      {
+        "key": "spot-dk2",
+        "granularity": "fifteen_minutes",
+        "timezone": "Europe/Copenhagen",
+        "currency": "DKK"
+      },
+      {
+        "key": "spot-se3",
+        "granularity": "fifteen_minutes",
+        "timezone": "Europe/Stockholm",
+        "currency": "SEK"
+      },
+      {
+        "key": "spot-no1",
+        "granularity": "fifteen_minutes",
+        "timezone": "Europe/Oslo",
+        "currency": "NOK"
+      }
+    ]
+  }
+}

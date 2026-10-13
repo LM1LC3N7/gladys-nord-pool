@@ -1,0 +1,513 @@
+{
+  "deliveryDateCET": "2026-10-13",
+  "version": 3,
+  "updatedAt": "2026-10-12T11:19:50.6774503Z",
+  "deliveryAreas": ["SE3"],
+  "market": "DayAhead",
+  "multiAreaEntries": [
+    {
+      "deliveryStart": "2026-10-12T22:00:00Z",
+      "deliveryEnd": "2026-10-12T22:15:00Z",
+      "entryPerArea": { "SE3": 1428.62 }
+    },
+    {
+      "deliveryStart": "2026-10-12T22:15:00Z",
+      "deliveryEnd": "2026-10-12T22:30:00Z",
+      "entryPerArea": { "SE3": 1416.29 }
+    },
+    {
+      "deliveryStart": "2026-10-12T22:30:00Z",
+      "deliveryEnd": "2026-10-12T22:45:00Z",
+      "entryPerArea": { "SE3": 1238.15 }
+    },
+    {
+      "deliveryStart": "2026-10-12T22:45:00Z",
+      "deliveryEnd": "2026-10-12T23:00:00Z",
+      "entryPerArea": { "SE3": 1135.46 }
+    },
+    {
+      "deliveryStart": "2026-10-12T23:00:00Z",
+      "deliveryEnd": "2026-10-12T23:15:00Z",
+      "entryPerArea": { "SE3": 1276.49 }
+    },
+    {
+      "deliveryStart": "2026-10-12T23:15:00Z",
+      "deliveryEnd": "2026-10-12T23:30:00Z",
+      "entryPerArea": { "SE3": 1242.3 }
+    },
+    {
+      "deliveryStart": "2026-10-12T23:30:00Z",
+      "deliveryEnd": "2026-10-12T23:45:00Z",
+      "entryPerArea": { "SE3": 1242.41 }
+    },
+    {
+      "deliveryStart": "2026-10-12T23:45:00Z",
+      "deliveryEnd": "2026-10-13T00:00:00Z",
+      "entryPerArea": { "SE3": 1176.38 }
+    },
+    {
+      "deliveryStart": "2026-10-13T00:00:00Z",
+      "deliveryEnd": "2026-10-13T00:15:00Z",
+      "entryPerArea": { "SE3": 1123.12 }
+    },
+    {
+      "deliveryStart": "2026-10-13T00:15:00Z",
+      "deliveryEnd": "2026-10-13T00:30:00Z",
+      "entryPerArea": { "SE3": 1127.5 }
+    },
+    {
+      "deliveryStart": "2026-10-13T00:30:00Z",
+      "deliveryEnd": "2026-10-13T00:45:00Z",
+      "entryPerArea": { "SE3": 1102.94 }
+    },
+    {
+      "deliveryStart": "2026-10-13T00:45:00Z",
+      "deliveryEnd": "2026-10-13T01:00:00Z",
+      "entryPerArea": { "SE3": 1008.99 }
+    },
+    {
+      "deliveryStart": "2026-10-13T01:00:00Z",
+      "deliveryEnd": "2026-10-13T01:15:00Z",
+      "entryPerArea": { "SE3": 1062.58 }
+    },
+    {
+      "deliveryStart": "2026-10-13T01:15:00Z",
+      "deliveryEnd": "2026-10-13T01:30:00Z",
+      "entryPerArea": { "SE3": 1055.52 }
+    },
+    {
+      "deliveryStart": "2026-10-13T01:30:00Z",
+      "deliveryEnd": "2026-10-13T01:45:00Z",
+      "entryPerArea": { "SE3": 1078.62 }
+    },
+    {
+      "deliveryStart": "2026-10-13T01:45:00Z",
+      "deliveryEnd": "2026-10-13T02:00:00Z",
+      "entryPerArea": { "SE3": 1026.04 }
+    },
+    {
+      "deliveryStart": "2026-10-13T02:00:00Z",
+      "deliveryEnd": "2026-10-13T02:15:00Z",
+      "entryPerArea": { "SE3": 1078.5 }
+    },
+    {
+      "deliveryStart": "2026-10-13T02:15:00Z",
+      "deliveryEnd": "2026-10-13T02:30:00Z",
+      "entryPerArea": { "SE3": 1024.69 }
+    },
+    {
+      "deliveryStart": "2026-10-13T02:30:00Z",
+      "deliveryEnd": "2026-10-13T02:45:00Z",
+      "entryPerArea": { "SE3": 1033.1 }
+    },
+    {
+      "deliveryStart": "2026-10-13T02:45:00Z",
+      "deliveryEnd": "2026-10-13T03:00:00Z",
+      "entryPerArea": { "SE3": 1101.6 }
+    },
+    {
+      "deliveryStart": "2026-10-13T03:00:00Z",
+      "deliveryEnd": "2026-10-13T03:15:00Z",
+      "entryPerArea": { "SE3": 1091.28 }
+    },
+    {
+      "deliveryStart": "2026-10-13T03:15:00Z",
+      "deliveryEnd": "2026-10-13T03:30:00Z",
+      "entryPerArea": { "SE3": 1146.55 }
+    },
+    {
+      "deliveryStart": "2026-10-13T03:30:00Z",
+      "deliveryEnd": "2026-10-13T03:45:00Z",
+      "entryPerArea": { "SE3": 1139.38 }
+    },
+    {
+      "deliveryStart": "2026-10-13T03:45:00Z",
+      "deliveryEnd": "2026-10-13T04:00:00Z",
+      "entryPerArea": { "SE3": 1297.12 }
+    },
+    {
+      "deliveryStart": "2026-10-13T04:00:00Z",
+      "deliveryEnd": "2026-10-13T04:15:00Z",
+      "entryPerArea": { "SE3": 1439.95 }
+    },
+    {
+      "deliveryStart": "2026-10-13T04:15:00Z",
+      "deliveryEnd": "2026-10-13T04:30:00Z",
+      "entryPerArea": { "SE3": 1653.74 }
+    },
+    {
+      "deliveryStart": "2026-10-13T04:30:00Z",
+      "deliveryEnd": "2026-10-13T04:45:00Z",
+      "entryPerArea": { "SE3": 1904.65 }
+    },
+    {
+      "deliveryStart": "2026-10-13T04:45:00Z",
+      "deliveryEnd": "2026-10-13T05:00:00Z",
+      "entryPerArea": { "SE3": 2136.6 }
+    },
+    {
+      "deliveryStart": "2026-10-13T05:00:00Z",
+      "deliveryEnd": "2026-10-13T05:15:00Z",
+      "entryPerArea": { "SE3": 2285.26 }
+    },
+    {
+      "deliveryStart": "2026-10-13T05:15:00Z",
+      "deliveryEnd": "2026-10-13T05:30:00Z",
+      "entryPerArea": { "SE3": 2416.32 }
+    },
+    {
+      "deliveryStart": "2026-10-13T05:30:00Z",
+      "deliveryEnd": "2026-10-13T05:45:00Z",
+      "entryPerArea": { "SE3": 2537.73 }
+    },
+    {
+      "deliveryStart": "2026-10-13T05:45:00Z",
+      "deliveryEnd": "2026-10-13T06:00:00Z",
+      "entryPerArea": { "SE3": 2640.76 }
+    },
+    {
+      "deliveryStart": "2026-10-13T06:00:00Z",
+      "deliveryEnd": "2026-10-13T06:15:00Z",
+      "entryPerArea": { "SE3": 2606.46 }
+    },
+    {
+      "deliveryStart": "2026-10-13T06:15:00Z",
+      "deliveryEnd": "2026-10-13T06:30:00Z",
+      "entryPerArea": { "SE3": 2512.62 }
+    },
+    {
+      "deliveryStart": "2026-10-13T06:30:00Z",
+      "deliveryEnd": "2026-10-13T06:45:00Z",
+      "entryPerArea": { "SE3": 2547.49 }
+    },
+    {
+      "deliveryStart": "2026-10-13T06:45:00Z",
+      "deliveryEnd": "2026-10-13T07:00:00Z",
+      "entryPerArea": { "SE3": 2337.17 }
+    },
+    {
+      "deliveryStart": "2026-10-13T07:00:00Z",
+      "deliveryEnd": "2026-10-13T07:15:00Z",
+      "entryPerArea": { "SE3": 2357.46 }
+    },
+    {
+      "deliveryStart": "2026-10-13T07:15:00Z",
+      "deliveryEnd": "2026-10-13T07:30:00Z",
+      "entryPerArea": { "SE3": 2278.87 }
+    },
+    {
+      "deliveryStart": "2026-10-13T07:30:00Z",
+      "deliveryEnd": "2026-10-13T07:45:00Z",
+      "entryPerArea": { "SE3": 2241.65 }
+    },
+    {
+      "deliveryStart": "2026-10-13T07:45:00Z",
+      "deliveryEnd": "2026-10-13T08:00:00Z",
+      "entryPerArea": { "SE3": 2040.07 }
+    },
+    {
+      "deliveryStart": "2026-10-13T08:00:00Z",
+      "deliveryEnd": "2026-10-13T08:15:00Z",
+      "entryPerArea": { "SE3": 2126.18 }
+    },
+    {
+      "deliveryStart": "2026-10-13T08:15:00Z",
+      "deliveryEnd": "2026-10-13T08:30:00Z",
+      "entryPerArea": { "SE3": 2025.39 }
+    },
+    {
+      "deliveryStart": "2026-10-13T08:30:00Z",
+      "deliveryEnd": "2026-10-13T08:45:00Z",
+      "entryPerArea": { "SE3": 1851.39 }
+    },
+    {
+      "deliveryStart": "2026-10-13T08:45:00Z",
+      "deliveryEnd": "2026-10-13T09:00:00Z",
+      "entryPerArea": { "SE3": 1748.92 }
+    },
+    {
+      "deliveryStart": "2026-10-13T09:00:00Z",
+      "deliveryEnd": "2026-10-13T09:15:00Z",
+      "entryPerArea": { "SE3": 1887.38 }
+    },
+    {
+      "deliveryStart": "2026-10-13T09:15:00Z",
+      "deliveryEnd": "2026-10-13T09:30:00Z",
+      "entryPerArea": { "SE3": 1748.92 }
+    },
+    {
+      "deliveryStart": "2026-10-13T09:30:00Z",
+      "deliveryEnd": "2026-10-13T09:45:00Z",
+      "entryPerArea": { "SE3": 1539.17 }
+    },
+    {
+      "deliveryStart": "2026-10-13T09:45:00Z",
+      "deliveryEnd": "2026-10-13T10:00:00Z",
+      "entryPerArea": { "SE3": 1578.85 }
+    },
+    {
+      "deliveryStart": "2026-10-13T10:00:00Z",
+      "deliveryEnd": "2026-10-13T10:15:00Z",
+      "entryPerArea": { "SE3": 1451.94 }
+    },
+    {
+      "deliveryStart": "2026-10-13T10:15:00Z",
+      "deliveryEnd": "2026-10-13T10:30:00Z",
+      "entryPerArea": { "SE3": 1397.91 }
+    },
+    {
+      "deliveryStart": "2026-10-13T10:30:00Z",
+      "deliveryEnd": "2026-10-13T10:45:00Z",
+      "entryPerArea": { "SE3": 1388.04 }
+    },
+    {
+      "deliveryStart": "2026-10-13T10:45:00Z",
+      "deliveryEnd": "2026-10-13T11:00:00Z",
+      "entryPerArea": { "SE3": 1412.59 }
+    },
+    {
+      "deliveryStart": "2026-10-13T11:00:00Z",
+      "deliveryEnd": "2026-10-13T11:15:00Z",
+      "entryPerArea": { "SE3": 1328.29 }
+    },
+    {
+      "deliveryStart": "2026-10-13T11:15:00Z",
+      "deliveryEnd": "2026-10-13T11:30:00Z",
+      "entryPerArea": { "SE3": 1357.21 }
+    },
+    {
+      "deliveryStart": "2026-10-13T11:30:00Z",
+      "deliveryEnd": "2026-10-13T11:45:00Z",
+      "entryPerArea": { "SE3": 1379.07 }
+    },
+    {
+      "deliveryStart": "2026-10-13T11:45:00Z",
+      "deliveryEnd": "2026-10-13T12:00:00Z",
+      "entryPerArea": { "SE3": 1374.59 }
+    },
+    {
+      "deliveryStart": "2026-10-13T12:00:00Z",
+      "deliveryEnd": "2026-10-13T12:15:00Z",
+      "entryPerArea": { "SE3": 1277.84 }
+    },
+    {
+      "deliveryStart": "2026-10-13T12:15:00Z",
+      "deliveryEnd": "2026-10-13T12:30:00Z",
+      "entryPerArea": { "SE3": 1317.07 }
+    },
+    {
+      "deliveryStart": "2026-10-13T12:30:00Z",
+      "deliveryEnd": "2026-10-13T12:45:00Z",
+      "entryPerArea": { "SE3": 1317.07 }
+    },
+    {
+      "deliveryStart": "2026-10-13T12:45:00Z",
+      "deliveryEnd": "2026-10-13T13:00:00Z",
+      "entryPerArea": { "SE3": 1166.06 }
+    },
+    {
+      "deliveryStart": "2026-10-13T13:00:00Z",
+      "deliveryEnd": "2026-10-13T13:15:00Z",
+      "entryPerArea": { "SE3": 1544.1 }
+    },
+    {
+      "deliveryStart": "2026-10-13T13:15:00Z",
+      "deliveryEnd": "2026-10-13T13:30:00Z",
+      "entryPerArea": { "SE3": 1470.67 }
+    },
+    {
+      "deliveryStart": "2026-10-13T13:30:00Z",
+      "deliveryEnd": "2026-10-13T13:45:00Z",
+      "entryPerArea": { "SE3": 1505.53 }
+    },
+    {
+      "deliveryStart": "2026-10-13T13:45:00Z",
+      "deliveryEnd": "2026-10-13T14:00:00Z",
+      "entryPerArea": { "SE3": 1457.44 }
+    },
+    {
+      "deliveryStart": "2026-10-13T14:00:00Z",
+      "deliveryEnd": "2026-10-13T14:15:00Z",
+      "entryPerArea": { "SE3": 1542.53 }
+    },
+    {
+      "deliveryStart": "2026-10-13T14:15:00Z",
+      "deliveryEnd": "2026-10-13T14:30:00Z",
+      "entryPerArea": { "SE3": 1631.54 }
+    },
+    {
+      "deliveryStart": "2026-10-13T14:30:00Z",
+      "deliveryEnd": "2026-10-13T14:45:00Z",
+      "entryPerArea": { "SE3": 1667.76 }
+    },
+    {
+      "deliveryStart": "2026-10-13T14:45:00Z",
+      "deliveryEnd": "2026-10-13T15:00:00Z",
+      "entryPerArea": { "SE3": 1625.6 }
+    },
+    {
+      "deliveryStart": "2026-10-13T15:00:00Z",
+      "deliveryEnd": "2026-10-13T15:15:00Z",
+      "entryPerArea": { "SE3": 1898.03 }
+    },
+    {
+      "deliveryStart": "2026-10-13T15:15:00Z",
+      "deliveryEnd": "2026-10-13T15:30:00Z",
+      "entryPerArea": { "SE3": 1888.61 }
+    },
+    {
+      "deliveryStart": "2026-10-13T15:30:00Z",
+      "deliveryEnd": "2026-10-13T15:45:00Z",
+      "entryPerArea": { "SE3": 1930.32 }
+    },
+    {
+      "deliveryStart": "2026-10-13T15:45:00Z",
+      "deliveryEnd": "2026-10-13T16:00:00Z",
+      "entryPerArea": { "SE3": 1893.43 }
+    },
+    {
+      "deliveryStart": "2026-10-13T16:00:00Z",
+      "deliveryEnd": "2026-10-13T16:15:00Z",
+      "entryPerArea": { "SE3": 1982.0 }
+    },
+    {
+      "deliveryStart": "2026-10-13T16:15:00Z",
+      "deliveryEnd": "2026-10-13T16:30:00Z",
+      "entryPerArea": { "SE3": 2004.87 }
+    },
+    {
+      "deliveryStart": "2026-10-13T16:30:00Z",
+      "deliveryEnd": "2026-10-13T16:45:00Z",
+      "entryPerArea": { "SE3": 2014.18 }
+    },
+    {
+      "deliveryStart": "2026-10-13T16:45:00Z",
+      "deliveryEnd": "2026-10-13T17:00:00Z",
+      "entryPerArea": { "SE3": 1777.62 }
+    },
+    {
+      "deliveryStart": "2026-10-13T17:00:00Z",
+      "deliveryEnd": "2026-10-13T17:15:00Z",
+      "entryPerArea": { "SE3": 1861.15 }
+    },
+    {
+      "deliveryStart": "2026-10-13T17:15:00Z",
+      "deliveryEnd": "2026-10-13T17:30:00Z",
+      "entryPerArea": { "SE3": 1396.78 }
+    },
+    {
+      "deliveryStart": "2026-10-13T17:30:00Z",
+      "deliveryEnd": "2026-10-13T17:45:00Z",
+      "entryPerArea": { "SE3": 1231.42 }
+    },
+    {
+      "deliveryStart": "2026-10-13T17:45:00Z",
+      "deliveryEnd": "2026-10-13T18:00:00Z",
+      "entryPerArea": { "SE3": 1107.43 }
+    },
+    {
+      "deliveryStart": "2026-10-13T18:00:00Z",
+      "deliveryEnd": "2026-10-13T18:15:00Z",
+      "entryPerArea": { "SE3": 1093.75 }
+    },
+    {
+      "deliveryStart": "2026-10-13T18:15:00Z",
+      "deliveryEnd": "2026-10-13T18:30:00Z",
+      "entryPerArea": { "SE3": 978.5 }
+    },
+    {
+      "deliveryStart": "2026-10-13T18:30:00Z",
+      "deliveryEnd": "2026-10-13T18:45:00Z",
+      "entryPerArea": { "SE3": 232.63 }
+    },
+    {
+      "deliveryStart": "2026-10-13T18:45:00Z",
+      "deliveryEnd": "2026-10-13T19:00:00Z",
+      "entryPerArea": { "SE3": 154.94 }
+    },
+    {
+      "deliveryStart": "2026-10-13T19:00:00Z",
+      "deliveryEnd": "2026-10-13T19:15:00Z",
+      "entryPerArea": { "SE3": 247.54 }
+    },
+    {
+      "deliveryStart": "2026-10-13T19:15:00Z",
+      "deliveryEnd": "2026-10-13T19:30:00Z",
+      "entryPerArea": { "SE3": 148.77 }
+    },
+    {
+      "deliveryStart": "2026-10-13T19:30:00Z",
+      "deliveryEnd": "2026-10-13T19:45:00Z",
+      "entryPerArea": { "SE3": 88.57 }
+    },
+    {
+      "deliveryStart": "2026-10-13T19:45:00Z",
+      "deliveryEnd": "2026-10-13T20:00:00Z",
+      "entryPerArea": { "SE3": 55.27 }
+    },
+    {
+      "deliveryStart": "2026-10-13T20:00:00Z",
+      "deliveryEnd": "2026-10-13T20:15:00Z",
+      "entryPerArea": { "SE3": 27.13 }
+    },
+    {
+      "deliveryStart": "2026-10-13T20:15:00Z",
+      "deliveryEnd": "2026-10-13T20:30:00Z",
+      "entryPerArea": { "SE3": 0.11 }
+    },
+    {
+      "deliveryStart": "2026-10-13T20:30:00Z",
+      "deliveryEnd": "2026-10-13T20:45:00Z",
+      "entryPerArea": { "SE3": -0.11 }
+    },
+    {
+      "deliveryStart": "2026-10-13T20:45:00Z",
+      "deliveryEnd": "2026-10-13T21:00:00Z",
+      "entryPerArea": { "SE3": -0.22 }
+    },
+    {
+      "deliveryStart": "2026-10-13T21:00:00Z",
+      "deliveryEnd": "2026-10-13T21:15:00Z",
+      "entryPerArea": { "SE3": 43.61 }
+    },
+    {
+      "deliveryStart": "2026-10-13T21:15:00Z",
+      "deliveryEnd": "2026-10-13T21:30:00Z",
+      "entryPerArea": { "SE3": 41.03 }
+    },
+    {
+      "deliveryStart": "2026-10-13T21:30:00Z",
+      "deliveryEnd": "2026-10-13T21:45:00Z",
+      "entryPerArea": { "SE3": 35.65 }
+    },
+    {
+      "deliveryStart": "2026-10-13T21:45:00Z",
+      "deliveryEnd": "2026-10-13T22:00:00Z",
+      "entryPerArea": { "SE3": 44.51 }
+    }
+  ],
+  "blockPriceAggregates": [
+    {
+      "blockName": "Off-peak 1",
+      "deliveryStart": "2026-10-12T22:00:00Z",
+      "deliveryEnd": "2026-10-13T06:00:00Z",
+      "averagePricePerArea": { "SE3": { "average": 1395.9, "min": 1008.99, "max": 2640.76 } }
+    },
+    {
+      "blockName": "Peak",
+      "deliveryStart": "2026-10-13T06:00:00Z",
+      "deliveryEnd": "2026-10-13T18:00:00Z",
+      "averagePricePerArea": { "SE3": { "average": 1729.72, "min": 1107.43, "max": 2606.46 } }
+    },
+    {
+      "blockName": "Off-peak 2",
+      "deliveryStart": "2026-10-13T18:00:00Z",
+      "deliveryEnd": "2026-10-13T22:00:00Z",
+      "averagePricePerArea": { "SE3": { "average": 199.48, "min": -0.22, "max": 1093.75 } }
+    }
+  ],
+  "currency": "SEK",
+  "exchangeRate": 11.21105,
+  "areaStates": [{ "state": "Final", "areas": ["SE3"] }],
+  "areaAverages": [{ "areaCode": "SE3", "price": 1363.41 }]
+}
