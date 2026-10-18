@@ -30,8 +30,10 @@ modèles de contrat vous laissent les renseigner.
    pour le Danemark, FI, AT, PL, EE, LT, LV), la **devise** des capteurs et le
    nombre d'**heures creuses par jour** (4 par défaut). Enregistrez.
 3. Ouvrez **Découverte** et créez l'appareil de chaque zone.
-4. Placez le widget **Prix de l'électricité** sur un tableau de bord et
-   choisissez la zone.
+4. Placez le widget **Prix de l'électricité** sur un tableau de bord. Sa
+   liste **Zone** ne montre que les zones dont l'appareil a été créé à
+   l'étape 3 ; si elle est laissée vide, le widget affiche la première zone
+   de la configuration (dans l'ordre de la liste ci-dessus).
 
 Rien d'autre : ni clé, ni compte. L'intégration lit Nord Pool au démarrage
 puis toutes les heures, demande demain à partir de 12 h 45 CET toutes les 10
@@ -113,6 +115,10 @@ le prix actuel de chaque zone.
 - **Les coûts du contrat s'arrêtent à une date** : le calendrier est rempli
   six semaines en arrière au plus ; un contrat daté avant est tarifé au prix
   de repli jusque-là.
+- **Le widget affiche une erreur de réglages** : l'appareil de la zone
+  choisie a été supprimé, et Gladys refuse un réglage qui le désigne.
+  Recréez l'appareil dans **Découverte**, ou ouvrez les réglages du widget,
+  choisissez une autre zone, puis videz le champ.
 
 ## Confidentialité
 

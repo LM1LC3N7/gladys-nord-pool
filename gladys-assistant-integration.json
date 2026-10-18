@@ -310,10 +310,14 @@
           "key": "area",
           "type": "select",
           "source": "devices",
-          "required": true,
+          "required": false,
           "label": {
             "en": "Area",
             "fr": "Zone"
+          },
+          "description": {
+            "en": "Empty: the first area of the configuration. The list shows the areas whose device was created in Discovery.",
+            "fr": "Vide : la première zone de la configuration. La liste montre les zones dont l'appareil a été créé dans Découverte."
           }
         }
       ]

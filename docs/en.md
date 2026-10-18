@@ -30,7 +30,10 @@ let you fill them in.
    the **currency** of the sensors and the number of **cheap hours per day**
    (4 by default). Save.
 3. Open **Discovery** and create the device of each area.
-4. Put the **Electricity prices** widget on a dashboard, pick the area.
+4. Put the **Electricity prices** widget on a dashboard. Its **Area** list
+   only shows the areas whose device was created at step 3; if left empty,
+   the widget shows the first area of the configuration (in the order of the
+   list above).
 
 Nothing else: no key, no account. The integration reads Nord Pool at start
 and every hour, asks for tomorrow from 12:45 CET every 10 minutes until it is
@@ -103,6 +106,10 @@ current price of every area.
   later, the integration keeps asking every 10 minutes.
 - **The contract costs stop at a date**: the calendar is fed six weeks back
   at most; a contract dated earlier is priced with the fallback price before.
+- **The widget shows a settings error**: the device of the area it was set
+  to was deleted, and Gladys refuses a setting that names it. Create the
+  device again in **Discovery**, or open the widget settings, pick another
+  area, then empty the field.
 
 ## Privacy
 

@@ -10,6 +10,16 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+### Fixed
+
+- Dashboard widget: the "Area" setting is no longer required (#6). Its list
+  only shows the areas whose device was created in Discovery, so before that
+  step the widget could not be saved and Gladys refused its content (HTTP 422).
+  If left empty, the widget shows the first area of the configuration; boxes
+  saved with an area keep it. The configured areas now follow a fixed order
+  (the order of the list), so this first area does not depend on the order
+  they were picked in.
+
 ## [1.1.0] - 2026-10-13
 
 ### Added

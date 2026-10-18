@@ -20,6 +20,7 @@ import {
   noContent,
 } from './helpers/fakeFetch.js';
 import { createFakeTimers } from './helpers/fakeTimers.js';
+import { Error422, coreWidgetSettings } from './helpers/coreWidgetSettings.js';
 
 const quiet = {
   info() {},
@@ -301,6 +302,30 @@ test('the widget and the action read the configured area', async () => {
   await app.stop();
 });
 
+test('#6: the widget renders before any device is created in Discovery', async () => {
+  const manifest = JSON.parse(
+    readFileSync(new URL('../gladys-assistant-integration.json', import.meta.url), 'utf8'),
+  );
+  const widget = manifest.widgets.find((w) => w.key === WIDGET_KEY);
+  const { app, gladys } = setup();
+  await app.start({ areas: ['FR'] });
+  // Discovered, not created: the core's "devices" source is empty, the
+  // Area select of the widget has nothing to offer.
+  assert.equal(gladys.fake.discoveredDevices.length, 1);
+  assert.deepEqual(gladys.fake.devices, []);
+  // A new box, nothing chosen: the core must not refuse it (it was a 422
+  // "settings.area: required" before the fix).
+  const settings = coreWidgetSettings(widget, {}, []);
+  const ack = await gladys.fake.widgetGet('prices', { settings, language: 'en' });
+  assert.equal(ack.success, true);
+  assert.equal(ack.data.content.components[0].text, 'Nord Pool FR', 'the first configured area');
+  assert.equal(ack.data.content.components.find((c) => c.type === 'value').value, 0.201);
+  // A box saved before the fix, with a created device, stays valid.
+  assert.deepEqual(coreWidgetSettings(widget, { area: FR }, [FR]), { area: FR });
+  assert.throws(() => coreWidgetSettings(widget, { area: FR }, []), Error422);
+  await app.stop();
+});
+
 test('the scene actions give the price now and the cheapest window', async () => {
   const { app, gladys } = setup();
   await app.start({ areas: ['FR'], cheap_hours: 3 });
@@ -354,7 +379,7 @@ test('a configuration change restarts with the new areas', async () => {
   await app.start({ areas: ['NL', 'FR'], currency: 'EUR', cheap_hours: 3 });
   assert.deepEqual(
     gladys.fake.discoveredDevices.map((d) => d.external_id),
-    ['ext:nord-pool:area:NL', FR],
+    [FR, 'ext:nord-pool:area:NL'], // the order of AREAS, not of the form
   );
   assert.equal(gladys.fake.lastState('ext:nord-pool:area:NL:current'), 0.19995);
   await app.stop();

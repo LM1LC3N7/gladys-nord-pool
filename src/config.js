@@ -12,11 +12,17 @@ export const DEFAULTS = {
   cheap_hours: 4,
 };
 
-/** The areas of a form value (an array, or a comma-separated string). */
+const AREA_ORDER = Object.keys(AREAS);
+
+/**
+ * The areas of a form value (an array, or a comma-separated string), in the
+ * order of AREAS whatever the order of the form: the widget without a chosen
+ * area shows the first one, which must not depend on the click order.
+ */
 function areaList(value) {
   const raw = Array.isArray(value) ? value : String(value ?? '').split(',');
-  const areas = raw.map((a) => String(a).trim().toUpperCase()).filter((a) => a in AREAS);
-  return [...new Set(areas)];
+  const areas = new Set(raw.map((a) => String(a).trim().toUpperCase()));
+  return AREA_ORDER.filter((a) => areas.has(a));
 }
 
 export function normalizeConfig(raw = {}) {
