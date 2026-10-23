@@ -10,6 +10,8 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+## [1.1.2] - 2026-10-23
+
 ## [1.1.1] - 2026-10-18
 
 ### Fixed
@@ -55,7 +57,8 @@ the notes of the version's GitHub Release.
   area with the supplier margin, a monthly subscription and VAT.
 - "Read the prices now" button.
 
-[Unreleased]: https://github.com/LM1LC3N7/gladys-nord-pool/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/LM1LC3N7/gladys-nord-pool/compare/v1.1.2...HEAD
+[1.1.2]: https://github.com/LM1LC3N7/gladys-nord-pool/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/LM1LC3N7/gladys-nord-pool/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/LM1LC3N7/gladys-nord-pool/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/LM1LC3N7/gladys-nord-pool/releases/tag/v1.0.0
