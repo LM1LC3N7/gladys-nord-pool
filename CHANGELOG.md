@@ -10,6 +10,13 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+### Changed
+
+- Declared the countries of the bidding zones (`countries`: FR, BE, NL, DE, LU,
+  AT, PL, NO, SE, FI, DK, EE, LV, LT): the Gladys catalog of an instance located
+  elsewhere no longer lists it in its browse views (the search still finds it).
+  Requires Gladys 5.3.0 or later.
+
 ## [1.1.2] - 2026-10-23
 
 ## [1.1.1] - 2026-10-18

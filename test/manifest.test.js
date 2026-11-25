@@ -35,7 +35,8 @@ function* texts(node, path = '') {
 test('the store basics', () => {
   assert.equal(manifest.manifest_version, 1);
   assert.equal(manifest.type, 'device');
-  assert.match(manifest.gladys_version, />=5\.2\.0/, 'energy contracts need Gladys 5.2');
+  // Energy contracts need Gladys 5.2, the catalog countries 5.3.
+  assert.match(manifest.gladys_version, /^>=5\.3\.0$/, 'countries need Gladys 5.3');
   assert.equal(manifest.docker_image, `ghcr.io/lm1lc3n7/gladys-nord-pool:${manifest.version}`);
   assert.equal(manifest.version, JSON.parse(read('package.json')).version);
   for (const lang of ['en', 'fr']) {
@@ -132,4 +133,13 @@ test('the docs exist in both languages, long enough for the store', () => {
   for (const lang of ['en', 'fr']) {
     assert.ok(read(`docs/${lang}.md`).length >= 300, `docs/${lang}.md`);
   }
+});
+
+test('the catalog countries are those of the bidding zones', async () => {
+  // One country per zone (GER is the Germany-Luxembourg zone): the catalog of an
+  // instance located elsewhere does not list the integration in its browse views.
+  const { AREAS } = await import('../src/constants.js');
+  const countries = new Set(Object.values(AREAS).map((area) => area.country));
+  countries.add('LU');
+  assert.deepEqual([...manifest.countries].sort(), [...countries].sort());
 });
